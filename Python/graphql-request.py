@@ -1,17 +1,17 @@
 import requests
 import json
 import time
-#Parameters for requests
-from variables import endpoint, headers, query
 import shutil
+#Parameters from variables
+from variables import output_folder, endpoint, headers, query
 
 #Time
 start_time = time.time()
 
-shutil.copyfile('Python/output/currentCursor/currentCursor.txt', 'Python/output/currentCursor/currentCursor_copy002.txt')
+shutil.copyfile(output_folder + 'currentCursor/currentCursor.txt', output_folder + 'currentCursor/currentCursor_copy003.txt')
 
 #On store la dernière valeur de allCardsEndCursor pour l'utiliser en démarrage de la prochaine exécution
-with open('Python/output/currentCursor/currentCursor.txt', 'r') as f:
+with open(output_folder + 'currentCursor/currentCursor.txt', 'r') as f:
     currentCursor = f.read()
 
 #Looping requests
@@ -32,11 +32,11 @@ while i <= 1000 and hasNextPage == True:
       dic = raw_data["data"]["allCards"]["nodes"]
 
       #On dump chaque json obtenu dans un fichier de 50 objets pour une réutilisation + simple + tard
-      with open('Python/output/json/data_dump_'+currentCursor+'.json', 'w') as json_file:
+      with open(output_folder + 'json/data_dump_' + currentCursor + '.json', 'w') as json_file:
         json.dump(dic, json_file)
 
       #On store la dernière valeur de allCardsEndCursor pour l'utiliser en démarrage de la prochaine exécution
-      with open('Python/output/currentCursor/currentCursor.txt', 'w') as f:
+      with open(output_folder + 'currentCursor/currentCursor.txt', 'w') as f:
           f.write(currentCursor)
 
       print(str(i) + " request success + hasNextPage = " + str(hasNextPage))

@@ -2,11 +2,12 @@ import json
 import pandas as pd
 import time
 import glob
+from variables import output_folder
 
 #Time
 start_time = time.time()
 
-read_files = glob.glob("Python/output/json/*.json")
+read_files = glob.glob(output_folder + "json/*.json")
 df = pd.DataFrame()
 for f in read_files:
     with open(f, 'r') as current_file:
@@ -73,11 +74,11 @@ df_cardSupply.drop_duplicates(inplace=True)
 df_allSo5Scores.drop_duplicates(inplace=True)
 
 #Export csv
-df_card.to_csv("Python/output/csv/card.csv", sep=";", index= False)
-df_player.to_csv("Python/output/csv/player.csv", sep=";", index= False)
-df_transfer.to_csv("Python/output/csv/transfer.csv", sep=";", index= False)
-df_cardSupply.to_csv("Python/output/csv/cardSupply.csv", sep=";", index= False)
-df_allSo5Scores.to_csv("Python/output/csv/allSo5Scores.csv", sep=";", index= False)
+df_card.to_csv(output_folder + "csv/card.csv", sep=";", index= False)
+df_player.to_csv(output_folder + "csv/player.csv", sep=";", index= False)
+df_transfer.to_csv(output_folder + "csv/transfer.csv", sep=";", index= False)
+df_cardSupply.to_csv(output_folder + "csv/cardSupply.csv", sep=";", index= False)
+df_allSo5Scores.to_csv(output_folder + "csv/allSo5Scores.csv", sep=";", index= False)
 
 
 #Time

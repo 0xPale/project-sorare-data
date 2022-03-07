@@ -1,3 +1,6 @@
+#Filepath parameters
+output_folder = "../output/python/"
+
 #Parameters for requests
 endpoint = f"https://api.sorare.com/graphql"
 
