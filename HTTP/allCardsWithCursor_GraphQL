@@ -1,0 +1,90 @@
+query allCardsWithCursor {
+  allCards(rarities: [unique, super_rare, rare, limited]) {
+    nodes {
+      cardSlug: slug
+      cardName: name
+      cardPriceRange: priceRange {
+        min
+        max
+      }
+      rarity
+      season {
+        cardSeason: startYear
+      }
+      player {
+        playerName: displayName
+        playerSlug: slug
+        playerPosition: position
+        playerAge: age
+        playerBirthDate: birthDate
+        playerAppearances: appearances
+        club: activeClub {
+          clubCountry: country {
+            countryCode: code
+            country: slug
+          }
+          clubSlug: slug
+          clubCode: code
+          clubName: name
+        }
+        cardSupply {
+          cardSeason: season {
+            seasonStartYear: startYear
+          }
+          cardLimitedNb: limited
+          cardrareNb: rare
+          cardSuperareNb: superRare
+          cardUniqueNb: unique
+        }
+        so5Scores(last: 5) {
+          score
+        }
+        stats(seasonStartYear: 2021) {
+          appearances
+          assists
+          goals
+          minutesPlayed
+          yellowCards
+          redCards
+          substituteIn
+          substituteOut
+        }
+        status {
+          lastFifteenSo5Appearances
+          lastFifteenSo5AverageScore
+          lastFiveSo5Appearances
+          lastFiveSo5AverageScore
+          playingStatus
+        }
+        allSo5Scores {
+          nodes {
+            playerGameStats {
+              game {
+                date
+              }
+            }
+            score
+          }
+          allScoresPageInfo: pageInfo {
+            allScoresHasPreviousPage: hasPreviousPage
+            allScoresHasNextPage: hasNextPage
+            allScoresendCursor: endCursor
+          }
+        }
+      }
+      userOwnersWithRate {
+        ownerFrom: from
+        transferType
+        transferPriceETH: price
+        transferPriceUSD: priceInFiat {
+          usd
+        }
+      }
+    }
+    allCardsPageInfo: pageInfo {
+      allCardsHasPreviousPage: hasPreviousPage
+      allCardsHasNextPage: hasNextPage
+      allCardsEndCursor: endCursor
+    }
+  }
+}

@@ -1,0 +1,751 @@
+{
+    "data": {
+        "player": {
+            "playerName": "Keven Schlotterbeck",
+            "playerSlug": "keven-schlotterbeck",
+            "playerAge": 24,
+            "playerBirthDate": "1997-04-28T00:00:00+00:00",
+            "club": {
+                "clubCountry": {
+                    "countryCode": "de"
+                },
+                "clubSlug": "freiburg-freiburg-im-breisgau",
+                "clubCode": "SCF",
+                "clubName": "Sport-Club Freiburg"
+            },
+            "playerPosition": "Defender",
+            "cards": {
+                "cardsNodes": [
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-6",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 6/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Dentexis",
+                                        "slug": "dentexis"
+                                    }
+                                },
+                                "from": "2022-02-01T08:57:54Z",
+                                "transferType": "single_sale_offer",
+                                "price": "70000000000000000",
+                                "priceInFiat": {
+                                    "eur": 170.2897
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "A.Pnishi6",
+                                        "slug": "a-pnishi6"
+                                    }
+                                },
+                                "from": "2021-12-15T19:55:45Z",
+                                "transferType": "single_sale_offer",
+                                "price": "32500000000000000",
+                                "priceInFiat": {
+                                    "eur": 109.9904
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Biede1987 ",
+                                        "slug": "biede1987"
+                                    }
+                                },
+                                "from": "2021-11-12T15:34:53Z",
+                                "transferType": "single_sale_offer",
+                                "price": "19000000000000000",
+                                "priceInFiat": {
+                                    "eur": 76.39406
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "SALE! only eth",
+                                        "slug": "sale-only-eth"
+                                    }
+                                },
+                                "from": "2021-11-06T14:14:43Z",
+                                "transferType": "auction",
+                                "price": "17000000000000000",
+                                "priceInFiat": {
+                                    "eur": 64.70013
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-14",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 14/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "kevke2511",
+                                        "slug": "kevke2511"
+                                    }
+                                },
+                                "from": "2022-01-13T10:40:49Z",
+                                "transferType": "auction",
+                                "price": "63000000000000000",
+                                "priceInFiat": {
+                                    "eur": 184.83381
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-21",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 21/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-18",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 18/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Chefauer",
+                                        "slug": "chefauer"
+                                    }
+                                },
+                                "from": "2022-02-04T19:34:46Z",
+                                "transferType": "auction",
+                                "price": "57200000000000000",
+                                "priceInFiat": {
+                                    "eur": 147.277416
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-23",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 23/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-27",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 27/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-10",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 10/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "MisterD_9",
+                                        "slug": "misterd_9"
+                                    }
+                                },
+                                "from": "2022-01-03T10:45:45Z",
+                                "transferType": "single_sale_offer",
+                                "price": "58000000000000000",
+                                "priceInFiat": {
+                                    "eur": 194.64278
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "sasizza2387",
+                                        "slug": "sasizza2387"
+                                    }
+                                },
+                                "from": "2021-12-23T04:16:42Z",
+                                "transferType": "auction",
+                                "price": "55600000000000000",
+                                "priceInFiat": {
+                                    "eur": 194.387608
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-11",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 11/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "MarcoFernandesCosta",
+                                        "slug": "marcofernandescosta"
+                                    }
+                                },
+                                "from": "2021-12-31T11:31:48Z",
+                                "transferType": "auction",
+                                "price": "59700000000000000",
+                                "priceInFiat": {
+                                    "eur": 199.043979
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-29",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 29/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-9",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 9/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Olic9",
+                                        "slug": "olic9"
+                                    }
+                                },
+                                "from": "2021-12-13T13:22:46Z",
+                                "transferType": "auction",
+                                "price": "27500000000000000",
+                                "priceInFiat": {
+                                    "eur": 97.35632500000001
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-26",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 26/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-12",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 12/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Linoldo",
+                                        "slug": "linoldo"
+                                    }
+                                },
+                                "from": "2022-01-05T05:10:43Z",
+                                "transferType": "auction",
+                                "price": "55300000000000000",
+                                "priceInFiat": {
+                                    "eur": 186.618145
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-17",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 17/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "FeMaBrusi",
+                                        "slug": "femabrusi"
+                                    }
+                                },
+                                "from": "2022-01-30T21:30:41Z",
+                                "transferType": "auction",
+                                "price": "62300000000000000",
+                                "priceInFiat": {
+                                    "eur": 144.233222
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-15",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 15/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Cavanohamma ",
+                                        "slug": "cavanohamma"
+                                    }
+                                },
+                                "from": "2022-01-21T09:41:48Z",
+                                "transferType": "single_sale_offer",
+                                "price": "65000000000000000",
+                                "priceInFiat": {
+                                    "eur": 166.01585
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "NikoJ",
+                                        "slug": "nikoj-754dbbe0-900e-4802-81a0-2369d5b731c8"
+                                    }
+                                },
+                                "from": "2022-01-21T03:16:46Z",
+                                "transferType": "auction",
+                                "price": "54100000000000000",
+                                "priceInFiat": {
+                                    "eur": 139.061345
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-3",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 3/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "SinEscanor",
+                                        "slug": "sinescanor"
+                                    }
+                                },
+                                "from": "2021-12-17T12:43:01Z",
+                                "transferType": "single_sale_offer",
+                                "price": "110000000000000000",
+                                "priceInFiat": {
+                                    "eur": 372.845
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "luckyluke5789k",
+                                        "slug": "luckyluke5789k"
+                                    }
+                                },
+                                "from": "2021-10-28T17:16:48Z",
+                                "transferType": "auction",
+                                "price": "30000000000000000",
+                                "priceInFiat": {
+                                    "eur": 107.724
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-13",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 13/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Talentschmiede",
+                                        "slug": "talentschmiede"
+                                    }
+                                },
+                                "from": "2022-01-17T19:55:47Z",
+                                "transferType": "single_sale_offer",
+                                "price": "70000000000000000",
+                                "priceInFiat": {
+                                    "eur": 197.5687
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "romaint87",
+                                        "slug": "romaint87"
+                                    }
+                                },
+                                "from": "2022-01-11T08:27:39Z",
+                                "transferType": "referral",
+                                "price": "0",
+                                "priceInFiat": {
+                                    "eur": 0.0
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-22",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 22/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-28",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 28/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-1",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 1/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Arninho",
+                                        "slug": "arninho"
+                                    }
+                                },
+                                "from": "2021-10-22T14:46:54Z",
+                                "transferType": "auction",
+                                "price": "27000000000000000",
+                                "priceInFiat": {
+                                    "eur": 94.30641
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-8",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 8/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Zocki",
+                                        "slug": "zocki"
+                                    }
+                                },
+                                "from": "2021-12-11T16:10:51Z",
+                                "transferType": "single_sale_offer",
+                                "price": "27800000000000000",
+                                "priceInFiat": {
+                                    "eur": 99.928212
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "superdavid88",
+                                        "slug": "superdavid88"
+                                    }
+                                },
+                                "from": "2021-12-02T00:52:49Z",
+                                "transferType": "auction",
+                                "price": "15000000000000000",
+                                "priceInFiat": {
+                                    "eur": 60.8031
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-19",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 19/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Ne0das",
+                                        "slug": "ne0das"
+                                    }
+                                },
+                                "from": "2022-02-11T19:55:50Z",
+                                "transferType": "auction",
+                                "price": "43800000000000000",
+                                "priceInFiat": {
+                                    "eur": 116.01744
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-24",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 24/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-4",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 4/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Il Fenomeno Vero",
+                                        "slug": "il-fenomeno-vero"
+                                    }
+                                },
+                                "from": "2021-10-30T21:13:45Z",
+                                "transferType": "auction",
+                                "price": "15000000000000000",
+                                "priceInFiat": {
+                                    "eur": 56.02140000000001
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-25",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 25/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-20",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 20/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": []
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-7",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 7/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Chuck91",
+                                        "slug": "chuck91"
+                                    }
+                                },
+                                "from": "2021-11-19T04:36:47Z",
+                                "transferType": "auction",
+                                "price": "19000000000000000",
+                                "priceInFiat": {
+                                    "eur": 67.13802
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-16",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 16/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "JayMart1",
+                                        "slug": "jaymart1"
+                                    }
+                                },
+                                "from": "2022-01-28T13:22:45Z",
+                                "transferType": "auction",
+                                "price": "66600000000000000",
+                                "priceInFiat": {
+                                    "eur": 142.243614
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-5",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 5/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Katalent",
+                                        "slug": "katalent"
+                                    }
+                                },
+                                "from": "2021-11-01T17:46:47Z",
+                                "transferType": "auction",
+                                "price": "17000000000000000",
+                                "priceInFiat": {
+                                    "eur": 63.16367
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "cardSlug": "keven-schlotterbeck-2021-rare-2",
+                        "cardName": "Keven Schlotterbeck 2021-22 • Rare 2/100",
+                        "cardRarity": "rare",
+                        "cardSeason": {
+                            "seasonStartYear": 2021
+                        },
+                        "userOwnersWithRate": [
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Superingo",
+                                        "slug": "superingo"
+                                    }
+                                },
+                                "from": "2022-02-04T11:07:47Z",
+                                "transferType": "direct_offer",
+                                "price": "0",
+                                "priceInFiat": {
+                                    "eur": 0.0
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Ol Dirty",
+                                        "slug": "ol-dirty"
+                                    }
+                                },
+                                "from": "2022-02-04T09:22:49Z",
+                                "transferType": "direct_offer",
+                                "price": "0",
+                                "priceInFiat": {
+                                    "eur": 0.0
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Superingo",
+                                        "slug": "superingo"
+                                    }
+                                },
+                                "from": "2021-12-19T16:30:55Z",
+                                "transferType": "direct_offer",
+                                "price": "0",
+                                "priceInFiat": {
+                                    "eur": 0.0
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Ol Dirty",
+                                        "slug": "ol-dirty"
+                                    }
+                                },
+                                "from": "2021-12-16T20:10:48Z",
+                                "transferType": "direct_offer",
+                                "price": "0",
+                                "priceInFiat": {
+                                    "eur": 0.0
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Superingo",
+                                        "slug": "superingo"
+                                    }
+                                },
+                                "from": "2021-12-02T01:15:50Z",
+                                "transferType": "single_sale_offer",
+                                "price": "19000000000000000",
+                                "priceInFiat": {
+                                    "eur": 76.88711
+                                }
+                            },
+                            {
+                                "userOwner": {
+                                    "owner": {
+                                        "nickname": "Foxfields",
+                                        "slug": "foxfields"
+                                    }
+                                },
+                                "from": "2021-10-23T21:22:51Z",
+                                "transferType": "auction",
+                                "price": "22000000000000000",
+                                "priceInFiat": {
+                                    "eur": 77.40128
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
