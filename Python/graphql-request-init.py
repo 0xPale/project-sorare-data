@@ -4,11 +4,13 @@ import time
 #Parameters from variables
 from variables import output_folder, endpoint, headers, query
 
-#Time
+# Storing the time at which the script is launched.
 start_time = time.time()
 
 #Init
+# Sending a query to the API and returning the response.
 r = requests.post(endpoint, json={"query": query}, headers=headers)
+
 if r.status_code == 200: #success
 
   #Transforme l'output de la commande requests en format json pour être exploité
