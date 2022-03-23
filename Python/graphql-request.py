@@ -9,7 +9,9 @@ from variables import output_folder, endpoint, headers, query
 #Time
 start_time = time.time()
 
-shutil.copyfile(output_folder + 'currentCursor/currentCursor.txt', output_folder + 'currentCursor/currentCursor_copy003.txt')
+copyNumber = input ("Enter a number for currentCursor_copy number: ")
+
+shutil.copyfile(output_folder + 'currentCursor/currentCursor.txt', output_folder + 'currentCursor/currentCursor_copy_' + copyNumber + '.txt')
 
 #On store la dernière valeur de allCardsEndCursor pour l'utiliser en démarrage de la prochaine exécution
 with open(output_folder + 'currentCursor/currentCursor.txt', 'r') as f:
@@ -20,10 +22,10 @@ with open(output_folder + 'currentCursor/currentCursor.txt', 'r') as f:
 i = 2
 hasNextPage = True
 
-max_loop_input = input ("Enter a number for while loop: ")
-max_loop = int(max_loop_input)
+maxLoopInput = input ("Enter a number for while loop: ")
+maxLoop = int(maxLoopInput)
 
-while i <= max_loop and hasNextPage == True:
+while i <= maxLoop and hasNextPage == True:
 
   r = requests.post(endpoint, json={"query": query, "variables": {"currentCursor": str(currentCursor)}}, headers=headers)
   if r.status_code == 200: #success
@@ -57,4 +59,5 @@ while i <= max_loop and hasNextPage == True:
       raise Exception(f"Query failed to run with a {r.status_code} + {r.headers}.")
 
 #Time
+print(copyNumber)
 print("--- %s seconds ---" % (time.time() - start_time))
