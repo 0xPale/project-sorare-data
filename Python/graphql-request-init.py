@@ -3,7 +3,7 @@ import requests
 import json
 import time
 #Parameters from variables
-from variables import output_folder, endpoint, headers, query
+from variables import outputFolder, outputJSON, endpoint, headers, query
 
 # Storing the time at which the script is launched.
 start_time = time.time()
@@ -24,11 +24,11 @@ if r.status_code == 200: #success
   dic = raw_data["data"]["allCards"]["nodes"]
 
   #On dump le json obtenu dans un fichier de 50 objets pour une réutilisation + simple + tard
-  with open(output_folder + 'json/data_dump_' + currentCursor + '_' + datetime.now().isoformat() + '.json', 'w') as json_file:
+  with open(outputFolder + outputJSON + 'data_dump_' + currentCursor + '_' + datetime.now().isoformat() + '.json', 'w') as json_file:
         json.dump(dic, json_file)
   
   #On store la dernière valeur de allCardsEndCursor pour l'utiliser en démarrage de la prochaine exécution
-  with open(output_folder + 'currentCursor/currentCursor.txt', 'w') as f:
+  with open(outputFolder + 'currentCursor/currentCursor.txt', 'w') as f:
         f.write(currentCursor)
 
   print("Initial request success")

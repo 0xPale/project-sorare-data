@@ -2,25 +2,31 @@ import json
 import pandas as pd
 import time
 import glob
-from variables import output_folder
+from pathlib import Path
+from variables import outputFolder, outputCSV, outputJSON
 
 # Storing the current time in seconds since the Epoch.
 start_time = time.time()
 
 # Reading all the files in the folder and subfolders.
-read_files = glob.glob(output_folder + "json/*.json")
+read_files = glob.glob(outputFolder + outputJSON + "*.json")
 
 # It creates a new dataframe.
 df = pd.DataFrame()
 
 # Reading the files and creating a dataframe for each file.
 for f in read_files:
+    datetimeFromFilename = Path(f).stem.split("_")[-1] #Path().stem give the filename without extension and then we return the last element [-1] of the list created by the split
     with open(f, 'r') as current_file:
         #raw = current_file.read()
         #current_object = json.loads(raw)
         current_object = json.load(current_file)
-        df_curr = pd.json_normalize(current_object, sep="_")
-        df = pd.concat([df, df_curr])
+    df_curr = pd.json_normalize(current_object, sep="_")
+    df_curr['extracted_at'] = datetimeFromFilename
+    df = pd.concat([df, df_curr])
+
+#On remet la date extracted_at qui indique quand est-ce que la ligne a été extracted depuis l'API en format datetime
+df["extracted_at"] = pd.to_datetime(df["extracted_at"])
 
 #On normalise le json pour le stocker dans un dataframe
 #df=pd.json_normalize(json_list, sep="_")
@@ -31,22 +37,22 @@ for f in read_files:
 #On commence par créer les dataframes correspondant à chaque subset en sélectionnant uniquement les colonnes utiles
 
 #On crée le premier output de sortie (la première table) qui ne contiendra que les data core de type dimension pour les cards
-df_card = df[["card_slug", "card_name", "card_rarity", "card_season_startYear", "player_slug"]]
+df_card = df[["card_slug", "card_name", "card_rarity", "card_season_startYear", "player_slug", "extracted_at"]]
 
 #Deuxième dataframe de type core pour la liste des players et leurs info (pour éviter de les répéter sur toutes les cards)
 #df_player --> regexr.com/6girp
 # Creating a new dataframe with only the columns that match the regex.
-df_player = df.filter(regex="player_name|player_slug|player_position|player_age|player_birthDate|player_appearances|player_followers|player_club.*|player_stat.*", axis=1)
+df_player = df.filter(regex="player_name|player_slug|player_position|player_age|player_birthDate|player_appearances|player_followers|player_club.*|player_stat.*|extracted_at", axis=1)
 
 #df_userOwnersWithRate --> regexr.com/6gira
 # It creates a new dataframe with only the columns that match the regex.
-df_transfer = df[["card_slug", "transfer"]]
+df_transfer = df[["card_slug", "transfer", "extracted_at"]]
 
 #df_cardSupply
-df_cardSupply = df[["player_slug", "player_cardSupply"]]
+df_cardSupply = df[["player_slug", "player_cardSupply", "extracted_at"]]
 
 #player_allSo5Scores_nodes
-df_allSo5Scores = df[["player_slug", "player_allSo5Scores_nodes"]]
+df_allSo5Scores = df[["player_slug", "player_allSo5Scores_nodes", "extracted_at"]]
 
 ####################################################################################################################################
 #On explode les colonne qui contiennent une liste de dict, ce qui nous permet d'obtenir une nouvelle ligne de données par dict de la liste
@@ -89,11 +95,11 @@ df_allSo5Scores.drop_duplicates(inplace=True)
 
 #Export csv
 # A way to save the dataframe in a csv file.
-df_card.to_csv(output_folder + "csv/card.csv", sep=";", index= False)
-df_player.to_csv(output_folder + "csv/player.csv", sep=";", index= False)
-df_transfer.to_csv(output_folder + "csv/transfer.csv", sep=";", index= False)
-df_cardSupply.to_csv(output_folder + "csv/cardSupply.csv", sep=";", index= False)
-df_allSo5Scores.to_csv(output_folder + "csv/allSo5Scores.csv", sep=";", index= False)
+df_card.to_csv(outputFolder + outputCSV + "card.csv", sep=";", index= False)
+df_player.to_csv(outputFolder + outputCSV + "player.csv", sep=";", index= False)
+df_transfer.to_csv(outputFolder + outputCSV + "transfer.csv", sep=";", index= False)
+df_cardSupply.to_csv(outputFolder + outputCSV + "cardSupply.csv", sep=";", index= False)
+df_allSo5Scores.to_csv(outputFolder + outputCSV + "allSo5Scores.csv", sep=";", index= False)
 
 
 #Time
