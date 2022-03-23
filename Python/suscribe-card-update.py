@@ -6,9 +6,17 @@ from variables import outputFolder
 
 w_socket = 'wss://ws.sorare.com/cable'
 identifier = json.dumps({"channel": "GraphqlChannel"})
-
+'''
 subscription_query = {
   "query": "subscription marketUpdated { publicMarketWasUpdated { card_slug: slug, transfer: userOwnersWithRate { transfer_date: from, transfer_type: transferType, transfer_priceETH: price, transfer_priceFiat: priceInFiat { usd } } } }",
+  "variables": {},
+  "operationName": "marketUpdated",
+  "action": "execute"
+}
+'''
+
+subscription_query = {
+  "query": "subscription marketUpdated { publicMarketWasUpdated { card_slug: slug, transfer: ownerWithRates { transfer_date: from, transfer_type: transferType, transfer_priceETH: price, transfer_priceFiat: priceInFiat { usd } } } }",
   "variables": {},
   "operationName": "marketUpdated",
   "action": "execute"
