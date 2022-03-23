@@ -20,7 +20,10 @@ with open(output_folder + 'currentCursor/currentCursor.txt', 'r') as f:
 i = 2
 hasNextPage = True
 
-while i <= 1000 and hasNextPage == True:
+max_loop_input = input ("Enter a number for while loop: ")
+max_loop = int(max_loop_input)
+
+while i <= max_loop and hasNextPage == True:
 
   r = requests.post(endpoint, json={"query": query, "variables": {"currentCursor": str(currentCursor)}}, headers=headers)
   if r.status_code == 200: #success
