@@ -2,7 +2,7 @@ import websocket
 import json
 import time
 from datetime import datetime
-from variables import output_folder
+from variables import outputFolder
 
 w_socket = 'wss://ws.sorare.com/cable'
 identifier = json.dumps({"channel": "GraphqlChannel"})
@@ -38,7 +38,7 @@ def on_message(ws, data):
   elif message.get('message') is not None:
     #print(message['message']['result']['data']['publicMarketWasUpdated'])
     print(message_raw)
-    with open(output_folder + 'subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
+    with open(outputFolder + 'subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
       output_file.write(str(message_raw) + "\n")
 
 def on_error(ws, error):
