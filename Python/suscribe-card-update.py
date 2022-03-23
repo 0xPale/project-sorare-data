@@ -34,6 +34,7 @@ def on_open(ws):
     "data": json.dumps(subscription_query)
   }
   ws.send(json.dumps(message_command).encode())
+  print('WebSocket Opened')
 
 def on_message(ws, data):
   message = json.loads(data)
@@ -45,7 +46,7 @@ def on_message(ws, data):
     pass
   elif message.get('message') is not None:
     #print(message['message']['result']['data']['publicMarketWasUpdated'])
-    print(message_raw)
+    #print(message_raw)
     with open(outputFolder + 'subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
       output_file.write(str(message_raw) + "\n")
 
