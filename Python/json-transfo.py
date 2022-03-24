@@ -37,22 +37,22 @@ df["extracted_at"] = pd.to_datetime(df["extracted_at"])
 #On commence par créer les dataframes correspondant à chaque subset en sélectionnant uniquement les colonnes utiles
 
 #On crée le premier output de sortie (la première table) qui ne contiendra que les data core de type dimension pour les cards
-df_card = df[["card_slug", "card_name", "card_rarity", "card_season_startYear", "player_slug", "extracted_at"]]
+df_card = df[["extracted_at", "card_slug", "card_name", "card_rarity", "card_season_startYear", "player_slug"]]
 
 #Deuxième dataframe de type core pour la liste des players et leurs info (pour éviter de les répéter sur toutes les cards)
 #df_player --> regexr.com/6girp
 # Creating a new dataframe with only the columns that match the regex.
-df_player = df.filter(regex="player_name|player_slug|player_position|player_age|player_birthDate|player_appearances|player_followers|player_club.*|player_stat.*|extracted_at", axis=1)
+df_player = df.filter(regex="extracted_at|player_name|player_slug|player_position|player_age|player_birthDate|player_appearances|player_followers|player_club.*|player_stat.*", axis=1)
 
 #df_userOwnersWithRate --> regexr.com/6gira
 # It creates a new dataframe with only the columns that match the regex.
-df_transfer = df[["card_slug", "transfer", "extracted_at"]]
+df_transfer = df[["extracted_at", "card_slug", "transfer"]]
 
 #df_cardSupply
-df_cardSupply = df[["player_slug", "player_cardSupply", "extracted_at"]]
+df_cardSupply = df[["extracted_at", "player_slug", "player_cardSupply"]]
 
 #player_allSo5Scores_nodes
-df_allSo5Scores = df[["player_slug", "player_allSo5Scores_nodes", "extracted_at"]]
+df_allSo5Scores = df[["extracted_at", "player_slug", "player_allSo5Scores_nodes"]]
 
 ####################################################################################################################################
 #On explode les colonne qui contiennent une liste de dict, ce qui nous permet d'obtenir une nouvelle ligne de données par dict de la liste
@@ -78,20 +78,35 @@ df_allSo5Scores = df_allSo5Scores.join(pd.json_normalize(df_allSo5Scores.player_
 
 ####################################################################################################################################
 #On drop la colonne qui contenait le dict de valeurs / de keys et qui est maintenant inutile puis on export sous csv
-# Dropping the column transfer and player_cardSupply and player_allSo5Scores_nodes.
+# Dropping the column transfer and player_cardSupply and player_allSo5Scores_nodes. On drop aussi les colonnes syétamtiquement vides.
+df_player.drop(columns=['player_club'], inplace=True)
 df_transfer.drop(columns=['transfer'], inplace=True)
 df_cardSupply.drop(columns=['player_cardSupply'], inplace=True)
 df_allSo5Scores.drop(columns=['player_allSo5Scores_nodes'], inplace=True)
+df_allSo5Scores.drop(columns=['info_game_fixture'], inplace=True)
 
 #On drop les valeurs vides de transfert qui sont inutiles
 # It drops the rows where the transfer_type is NaN.
 df_transfer.dropna(subset=['transfer_type'], inplace=True)
 
-#On drop les duplicate qui peuvent apparaître dans les data liées aux players (car elles vont être dupliquées pour chaque card de ce player)
 # It drops the duplicate rows.
-df_player.drop_duplicates(inplace=True)
-df_cardSupply.drop_duplicates(inplace=True)
-df_allSo5Scores.drop_duplicates(inplace=True)
+df_card.drop_duplicates(subset=["card_slug","card_name","card_rarity","card_season_startYear","player_slug"], inplace=True)
+df_player.drop_duplicates(
+    subset=[
+        "player_slug","player_name","player_position","player_age","player_birthDate","player_appearances","player_followers",
+        "player_club_country_code","player_club_country_slug","player_club_slug","player_club_code","player_club_name",
+        "player_club_league_slug","player_club_league_name","player_stats_appearances","player_stats_assists",
+        "player_stats_goals","player_stats_minutesPlayed","player_stats_yellowCards","player_stats_redCards",
+        "player_stats_substituteIn","player_stats_substituteOut","player_status_lastFifteenSo5Appearances",
+        "player_status_lastFifteenSo5AverageScore","player_status_lastFiveSo5Appearances",
+        "player_status_lastFiveSo5AverageScore","player_status_playingStatus"
+        ],
+        inplace=True
+        )
+df_transfer.drop_duplicates(subset=["card_slug","transfer_date","transfer_type","transfer_priceETH","transfer_priceFiat_usd"], inplace=True)
+df_cardSupply.drop_duplicates(subset=["player_slug","cardSupply_limited","cardSupply_rare","cardSupply_superRare","cardSupply_unique","cardSupply_season"] ,inplace=True)
+df_allSo5Scores.drop_duplicates(
+    subset=["player_slug","score","info_game_date","info_game_fixture_eventType","info_game_fixture_slug","info_game_fixture_gameWeek","decisive_score"], inplace=True)
 
 #Export csv
 # A way to save the dataframe in a csv file.
