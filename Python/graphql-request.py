@@ -52,7 +52,13 @@ while i <= maxLoop and hasNextPage == True:
   elif r.status_code == 429: #Time out
 
       time.sleep(30)
-      print("Waited for 30s for iteration " + str(i))
+      print("Status code 429 - Waited for 30s for iteration " + str(i))
+      i = i+1
+  
+  elif r.status_code == 502: #Time out
+
+      time.sleep(30)
+      print("Status code 502 - Waited for 30s for iteration " + str(i))
       i = i+1
 
   else:
