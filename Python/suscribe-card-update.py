@@ -1,6 +1,7 @@
 import websocket
 import json
 import time
+import asyncio
 from datetime import datetime
 from variables import outputFolder
 
@@ -26,7 +27,7 @@ def on_open(ws):
   subscribe_command = {"command": "subscribe", "identifier": identifier}
   ws.send(json.dumps(subscribe_command).encode())
 
-  time.sleep(1)
+  asyncio.sleep(1)
 
   message_command = {
     "command": "message",
@@ -55,7 +56,7 @@ def on_error(ws, error):
 
 def on_close(ws, close_status_code, close_message):
   print('WebSocket Closed:', close_message, close_status_code)
-  time.sleep(1)
+  asyncio.sleep(1)
   long_connection()
 
 def long_connection():
