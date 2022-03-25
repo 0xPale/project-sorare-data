@@ -42,9 +42,11 @@ def on_message(ws, data):
   message_raw = data
   type = message.get('type')
   if type == 'welcome':
-    pass
+    print(type)
+    #pass
   elif type == 'ping':
-    pass
+    print(type)
+    #pass
   elif message.get('message') is not None:
     #print(message['message']['result']['data']['publicMarketWasUpdated'])
     #print(message_raw)
