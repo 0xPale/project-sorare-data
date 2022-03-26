@@ -116,7 +116,7 @@ while read_files:  # True if there are any files, False if empty list
 
 
     #Export csv
-    df_card.to_csv(outputFolder + outputCSV + "card.csv", sep=";", index= False, mode='a', header=not os.path.existsoutputFolder + outputCSV + "card.csv"))
+    df_card.to_csv(outputFolder + outputCSV + "card.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "card.csv"))
     df_player.to_csv(outputFolder + outputCSV + "player.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "player.csv"))
     df_transfer.to_csv(outputFolder + outputCSV + "transfer.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "transfer.csv"))
     df_cardSupply.to_csv(outputFolder + outputCSV + "cardSupply.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "cardSupply.csv"))
