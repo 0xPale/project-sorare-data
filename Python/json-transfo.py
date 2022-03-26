@@ -22,6 +22,11 @@ while read_files:  # True if there are any files, False if empty list
     while_time = time.time()
 
     df = pd.DataFrame()
+    df_card = pd.DataFrame()
+    df_cardSupply = pd.DataFrame()
+    df_player = pd.DataFrame()
+    df_transfer = pd.DataFrame()
+    df_allSo5Scores = pd.DataFrame()
     
     for i in range(min(len_read_files, maxRange)):   # xx files at a time 
         file = read_files[0]     # select the first file's name
