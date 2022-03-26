@@ -129,7 +129,7 @@ while read_files:  # True if there are any files, False if empty list
     df_allSo5Scores.to_csv(outputFolder + outputCSV + "allSo5Scores.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "allSo5Scores.csv"))
 
     #print(df.shape + "-" + df_card.shape + "-" + df_player.shape + "-" + df_transfer.shape + "-" + df_cardSupply.shape + "-" + df_allSo5Scores.shape )
-    print("Lenght read file list: " + len_read_files + "--- %s seconds ---" % (time.time() - while_time))
+    print("Lenght read file list: " + str(len_read_files) + "--- %s seconds ---" % (time.time() - while_time))
 
 #Time
 print("--- %s seconds ---" % (time.time() - start_time))
