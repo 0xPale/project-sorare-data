@@ -10,6 +10,9 @@ from variables import outputFolder, outputCSV, outputJSON
 #Time
 start_time = time.time()
 
+maxLoopInput = input ("Enter a number for range loop: ")
+maxLoop = int(maxLoopInput)
+
 # returns a list with all the files in source
 read_files = glob.glob(outputFolder + outputJSON + "*.json")
 len_read_files = len(read_files)
@@ -20,7 +23,7 @@ while read_files:  # True if there are any files, False if empty list
 
     df = pd.DataFrame()
     
-    for i in range(min(len_read_files, 200)):   # xx files at a time 
+    for i in range(min(len_read_files, maxLoop)):   # xx files at a time 
         file = read_files[0]     # select the first file's name
         datetimeFromFilename = Path(file).stem.split("_")[-1] #Path().stem give the filename without extension and then we return the last element [-1] of the list created by the split                    
         with open(file, 'r') as current_file:
