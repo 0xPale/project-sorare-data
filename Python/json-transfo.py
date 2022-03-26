@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import time
 import glob
-import pickle
+#import pickle
 import os
 from pathlib import Path
 from variables import outputFolder, outputCSV, outputJSON
@@ -37,8 +37,8 @@ while read_files:  # True if there are any files, False if empty list
     len_read_files = len(read_files)
 
     #We save the current list in pickle (binary format used by pyton) to reuse in case of error
-    with open(outputFolder + "currentReadFilesList/read_files_list", 'wb') as currentReadFilesList:
-        pickle.dump(read_files, currentReadFilesList)
+    #with open(outputFolder + "currentReadFilesList/read_files_list", 'wb') as currentReadFilesList:
+    #    pickle.dump(read_files, currentReadFilesList)
     
 
     #On remet la date extracted_at qui indique quand est-ce que la ligne a été extracted depuis l'API en format datetime
