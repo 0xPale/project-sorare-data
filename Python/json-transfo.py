@@ -33,9 +33,9 @@ while read_files:  # True if there are any files, False if empty list
         datetimeFromFilename = Path(file).stem.split("_")[-1] #Path().stem give the filename without extension and then we return the last element [-1] of the list created by the split                    
         with open(file, 'r') as current_file:
             current_object = json.load(current_file)
-            df_curr = pd.json_normalize(current_object, sep="_")
-            df_curr['extracted_at'] = datetimeFromFilename
-            df = pd.concat([df, df_curr])
+        df_curr = pd.json_normalize(current_object, sep="_")
+        df_curr['extracted_at'] = datetimeFromFilename
+        df = pd.concat([df, df_curr])
         read_files.pop(0)       # Remove the moved file from the list
     
     #Store len(list) to avoid errors on the next while if len(list) is < range(xx)
@@ -135,7 +135,7 @@ while read_files:  # True if there are any files, False if empty list
     df_allSo5Scores.to_csv(outputFolder + outputCSV + "allSo5Scores.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "allSo5Scores.csv"))
 
     #print(df.shape + "-" + df_card.shape + "-" + df_player.shape + "-" + df_transfer.shape + "-" + df_cardSupply.shape + "-" + df_allSo5Scores.shape )
-    print("Lenght read file list: " + str(len_read_files) + "--- %s seconds ---" % (time.time() - while_time))
+    print("--- %s seconds ---" % (time.time() - while_time))
 
 #Time
 print("--- %s seconds ---" % (time.time() - start_time))
