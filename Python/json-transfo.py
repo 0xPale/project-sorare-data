@@ -40,7 +40,6 @@ while read_files:  # True if there are any files, False if empty list
     #with open(outputFolder + "currentReadFilesList/read_files_list", 'wb') as currentReadFilesList:
     #    pickle.dump(read_files, currentReadFilesList)
     
-    print("Init --- %s seconds ---" % (time.time() - while_time))
     #On remet la date extracted_at qui indique quand est-ce que la ligne a été extracted depuis l'API en format datetime
     df["extracted_at"] = pd.to_datetime(df["extracted_at"])
 
@@ -92,8 +91,6 @@ while read_files:  # True if there are any files, False if empty list
     df_allSo5Scores.drop(columns=['player_allSo5Scores_nodes'], inplace=True)
     df_allSo5Scores.drop(columns=['info_game_fixture'], inplace=True)
 
-    print("Constit --- %s seconds ---" % (time.time() - while_time))
-
     ####################################################################################################################################
     #On drop certaines colonnes inutiles
     #On drop les valeurs vides de transfert qui sont inutiles
@@ -119,7 +116,7 @@ while read_files:  # True if there are any files, False if empty list
     df_allSo5Scores.drop_duplicates(
         subset=["player_slug","score","info_game_date","info_game_fixture_eventType","info_game_fixture_slug","info_game_fixture_gameWeek","decisive_score"], inplace=True)
 
-    print("Dupli --- %s seconds ---" % (time.time() - while_time))
+    print("Pre CSV --- %s seconds ---" % (time.time() - while_time))
 
     #Export csv
     df_card.to_csv(outputFolder + outputCSV + "card.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "card.csv"))
