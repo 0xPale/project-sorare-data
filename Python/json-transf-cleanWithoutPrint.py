@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import time
 import glob
-#import pickle
+import pickle
 import os
 from pathlib import Path
 from variables import outputFolder, outputCSV, outputJSON
@@ -35,17 +35,15 @@ while read_files:  # True if there are any files, False python3if empty list
             current_object = json.load(current_file)
         df_curr = pd.json_normalize(current_object, sep="_")
         df_curr['extracted_at'] = datetimeFromFilename
-        df = pd.concat([df, df_curr])
+        df = pd.concat([df, df_curr], sort=True)
         read_files.pop(0)       # Remove the moved file from the list
     
     #Store len(list) to avoid errors on the next while if len(list) is < range(xx)
     len_read_files = len(read_files)
 
     #We save the current list in pickle (binary format used by pyton) to reuse in case of error
-    #with open(outputFolder + "currentReadFilesList/read_files_list", 'wb') as currentReadFilesList:
-    #    pickle.dump(read_files, currentReadFilesList)
-    
-    print("Init --- %s seconds ---" % (time.time() - while_time))
+    with open(outputFolder + "currentReadFilesList/read_files_list", 'wb') as currentReadFilesList:
+        pickle.dump(read_files, currentReadFilesList)
 
     #On remet la date extracted_at qui indique quand est-ce que la ligne a été extracted depuis l'API en format datetime
     df["extracted_at"] = pd.to_datetime(df["extracted_at"])
@@ -92,18 +90,15 @@ while read_files:  # True if there are any files, False python3if empty list
     ####################################################################################################################################
    #On drop la colonne qui contenait le dict de valeurs / de keys et qui est maintenant inutile puis on export sous csv
     # Dropping the column transfer and player_cardSupply and player_allSo5Scores_nodes. On drop aussi les colonnes syétamtiquement vides.
-    df_player.drop(columns=['player_club'], inplace=True)
-    df_transfer.drop(columns=['transfer'], inplace=True)
-    df_cardSupply.drop(columns=['player_cardSupply'], inplace=True)
-    df_allSo5Scores.drop(columns=['player_allSo5Scores_nodes'], inplace=True)
-    df_allSo5Scores.drop(columns=['info_game_fixture'], inplace=True)
+    df_player = df_player.drop(columns=['player_club']) #'player_club_league'
+    df_transfer = df_transfer.drop(columns=['transfer'])
+    df_cardSupply = df_cardSupply.drop(columns=['player_cardSupply'])
+    df_allSo5Scores = df_allSo5Scores.drop(columns=['player_allSo5Scores_nodes', 'info_game_fixture'])
 
     ####################################################################################################################################
     #On drop certaines colonnes inutiles
     #On drop les valeurs vides de transfert qui sont inutiles
     df_transfer = df_transfer.dropna(subset=['transfer_type'])
-
-    print("middle --- %s seconds ---" % (time.time() - while_time))
 
     #On drop les duplicate qui peuvent apparaître dans les data liées aux players (car elles vont être dupliquées pour chaque card de ce player)
     # It drops the duplicate rows.
@@ -123,7 +118,22 @@ while read_files:  # True if there are any files, False python3if empty list
     df_allSo5Scores = df_allSo5Scores.drop_duplicates(
         subset=["player_slug","score","info_game_date","info_game_fixture_eventType","info_game_fixture_slug","info_game_fixture_gameWeek","decisive_score"])
 
-    print("dupli --- %s seconds ---" % (time.time() - while_time))
+    
+    #On met toutes les colonnes dans le bon ordre avant export
+    df_card = df_card.reindex(columns=["card_slug","card_name","card_rarity","card_season_startYear","player_slug", "extracted_at"])
+    df_player = df_player.reindex(columns=[
+            "player_slug","player_name","player_position","player_age","player_birthDate","player_appearances","player_followers",
+            "player_club_country_code","player_club_country_slug","player_club_slug","player_club_code","player_club_name",
+            "player_club_league_slug","player_club_league_name","player_stats_appearances","player_stats_assists",
+            "player_stats_goals","player_stats_minutesPlayed","player_stats_yellowCards","player_stats_redCards",
+            "player_stats_substituteIn","player_stats_substituteOut","player_status_lastFifteenSo5Appearances",
+            "player_status_lastFifteenSo5AverageScore","player_status_lastFiveSo5Appearances",
+            "player_status_lastFiveSo5AverageScore","player_status_playingStatus", "extracted_at"
+            ])
+    df_transfer = df_transfer.reindex(columns=["card_slug","transfer_date","transfer_type","transfer_priceETH","transfer_priceFiat_usd", "extraced_at"])
+    df_cardSupply = df_cardSupply.reindex(columns=["player_slug","cardSupply_limited","cardSupply_rare","cardSupply_superRare","cardSupply_unique","cardSupply_season", "extraced_at"])
+    df_allSo5Scores = df_allSo5Scores.reindex(
+        columns=["player_slug","score","info_game_date","info_game_fixture_eventType","info_game_fixture_slug","info_game_fixture_gameWeek","decisive_score", "extraced_at"])
 
     #Export csv
     df_card.to_csv(outputFolder + outputCSV + "card.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "card.csv"))

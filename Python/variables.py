@@ -1,7 +1,7 @@
 #Filepath parameters
 outputFolder = "../output/python/"
 outputCSV = "csv/"
-outputJSON = "json/"
+outputJSON = "json/json/"
 
 #Parameters for requests
 endpoint = f"https://api.sorare.com/graphql"

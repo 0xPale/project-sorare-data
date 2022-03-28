@@ -45,11 +45,8 @@ def on_message(ws, data):
     print(type)
     #pass
   elif type == 'ping':
-    print(type)
-    #pass
+    pass
   elif message.get('message') is not None:
-    #print(message['message']['result']['data']['publicMarketWasUpdated'])
-    #print(message_raw)
     with open(outputFolder + 'subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
       output_file.write(str(message_raw) + "\n")
 
@@ -58,7 +55,7 @@ def on_error(ws, error):
 
 def on_close(ws, close_status_code, close_message):
   print('WebSocket Closed:', close_message, close_status_code)
-  asyncio.sleep(1)
+  asyncio.sleep(5)
   long_connection()
 
 def long_connection():

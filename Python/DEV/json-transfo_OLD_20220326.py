@@ -87,11 +87,11 @@ df_allSo5Scores.drop(columns=['info_game_fixture'], inplace=True)
 
 #On drop les valeurs vides de transfert qui sont inutiles
 # It drops the rows where the transfer_type is NaN.
-df_transfer.dropna(subset=['transfer_type'], inplace=True)
+df_transfer = df_transfer.dropna(subset=['transfer_type'])
 
 # It drops the duplicate rows.
-df_card.drop_duplicates(subset=["card_slug","card_name","card_rarity","card_season_startYear","player_slug"], inplace=True)
-df_player.drop_duplicates(
+df_card = df_card.drop_duplicates(subset=["card_slug","card_name","card_rarity","card_season_startYear","player_slug"])
+df_player = df_player.drop_duplicates(
     subset=[
         "player_slug","player_name","player_position","player_age","player_birthDate","player_appearances","player_followers",
         "player_club_country_code","player_club_country_slug","player_club_slug","player_club_code","player_club_name",
@@ -100,13 +100,11 @@ df_player.drop_duplicates(
         "player_stats_substituteIn","player_stats_substituteOut","player_status_lastFifteenSo5Appearances",
         "player_status_lastFifteenSo5AverageScore","player_status_lastFiveSo5Appearances",
         "player_status_lastFiveSo5AverageScore","player_status_playingStatus"
-        ],
-        inplace=True
-        )
-df_transfer.drop_duplicates(subset=["card_slug","transfer_date","transfer_type","transfer_priceETH","transfer_priceFiat_usd"], inplace=True)
-df_cardSupply.drop_duplicates(subset=["player_slug","cardSupply_limited","cardSupply_rare","cardSupply_superRare","cardSupply_unique","cardSupply_season"] ,inplace=True)
-df_allSo5Scores.drop_duplicates(
-    subset=["player_slug","score","info_game_date","info_game_fixture_eventType","info_game_fixture_slug","info_game_fixture_gameWeek","decisive_score"], inplace=True)
+        ])
+df_transfer = df_transfer.drop_duplicates(subset=["card_slug","transfer_date","transfer_type","transfer_priceETH","transfer_priceFiat_usd"])
+df_cardSupply = df_cardSupply.drop_duplicates(subset=["player_slug","cardSupply_limited","cardSupply_rare","cardSupply_superRare","cardSupply_unique","cardSupply_season"])
+df_allSo5Scores = df_allSo5Scores.drop_duplicates(
+    subset=["player_slug","score","info_game_date","info_game_fixture_eventType","info_game_fixture_slug","info_game_fixture_gameWeek","decisive_score"])
 
 #Export csv
 # A way to save the dataframe in a csv file.
