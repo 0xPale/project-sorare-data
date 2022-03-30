@@ -16,7 +16,7 @@ subscription_query = {
 '''
 
 subscription_query = {
-  "query": "subscription marketUpdated { publicMarketWasUpdated { card_slug: slug, transfer: ownerWithRates { transfer_date: from, transfer_type: transferType, transfer_priceETH: price, transfer_priceFiat: priceInFiat { usd } } } }",
+  "query": "subscription marketUpdated { publicMarketWasUpdated { card_slug: slug transfer: ownerWithRates { sorareAccount: account { manager: owner { ... on User { nickname slug } } } transfer_date: from transfer_type: transferType transfer_priceETH: price transfer_priceFiat: priceInFiat { usd } } } }",
   "variables": {},
   "operationName": "marketUpdated",
   "action": "execute"

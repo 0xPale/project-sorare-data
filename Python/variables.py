@@ -108,3 +108,41 @@ query allCardsWithCursor ($currentCursor: String) {
   }
 }
 """
+
+#allPlayersScore(rarities: [unique, super_rare, rare, limited], after: $currentCursor) {
+queryPlayer = """
+query allPlayersScore {
+  player(slug: "ronaldo-cesar-mendes-de-medeiros") {
+    # Player information
+    playerSlug: slug
+		followers: subscriptionsCount
+    cardSupply {
+          cardSupply: season {
+            season: startYear
+          }
+          cardSupply_limited: limited
+          cardSupply_rare: rare
+          cardSupply_superRare : superRare
+          cardSupply_unique: unique
+        }
+    allSo5Scores {
+          nodes {
+            info: playerGameStats {
+              game {
+                date
+                fixture: so5Fixture {
+                  eventType
+                  slug
+                  gameWeek
+                }
+              }
+            }
+            score
+            decisive: decisiveScore {
+              score: totalScore
+            }
+          }
+        }
+  }
+}
+"""
