@@ -1,8 +1,8 @@
 import websocket
 import json
 import time
-import asyncio
 from datetime import datetime
+from variables import outputFolder
 
 w_socket = 'wss://ws.sorare.com/cable'
 identifier = json.dumps({"channel": "GraphqlChannel"})
@@ -46,7 +46,8 @@ def on_message(ws, data):
   elif type == 'ping':
     pass
   elif message.get('message') is not None:
-    with open('/home/benja_sicard/output/python/subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
+    #with open('/home/benja_sicard/output/python/subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
+    with open(outputFolder + 'subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
       output_file.write(str(message_raw) + "\n")
 
 def on_error(ws, error):
