@@ -76,6 +76,13 @@ for file in read_files:
     df_cardSupply = df_cardSupply.drop(columns=["cardSupply"])
     df_allSo5Scores = df_allSo5Scores.drop(columns=["allSo5Scores_nodes", "detailedScore", "game_fixture"])
 
+# A way to reindex the columns of the dataframe.
+    df_cardSupply = df_cardSupply.reindex(columns=["player_slug","cardSupply_season", "cardSupply_limited","cardSupply_rare","cardSupply_superRare","cardSupply_unique"])
+    df_allSo5Scores = df_allSo5Scores.reindex(columns=[
+        "player_slug","game_fixture_slug","game_fixture_gameWeek","game_fixture_eventType", "game_date", 
+        "game_competition_slug", "game_homeTeam_slug", "game_homeGoals", "game_awayTeam_slug", "game_awayGoals",
+        "gameweek_score", "decisive_score", "category", "stat", "statValue", "points", "score"])
+
     #Export csv
     df_player.to_csv(outputFolder + outputCSV + "player.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "player.csv"))
     df_cardSupply.to_csv(outputFolder + outputCSV + "cardSupply.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "cardSupply.csv"))
