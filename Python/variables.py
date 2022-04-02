@@ -1,6 +1,6 @@
 #Filepath parameters
 outputFolder = "../output/python/"
-outputCSV = "csv/"
+outputCSV = "json_player/csv/"
 outputJSON = "json/json/"
 outputJSONPlayer = "json_player/"
 
