@@ -1,8 +1,11 @@
 #Filepath parameters
 outputFolder = "../output/python/"
-outputCSV = "json_player/csv/"
+outputCSV = "csv/"
+outputCSVPlayer = "json_player/csv/"
+outputCSVSubscription = "subscription/csv/"
 outputJSON = "json/json/"
 outputJSONPlayer = "json_player/"
+outputJSONSubscription = "subscription/"
 
 #Parameters for requests
 endpoint = f"https://api.sorare.com/graphql"
@@ -228,11 +231,11 @@ query allCardsWithCursor($currentCursor: String) {
         startYear
       }
       transfer: userOwnersWithRate {
-        account {
-          owner {
+        sorareAccount: account {
+          manager: owner {
             ... on User {
-              nickname: nickname
-              slug: slug
+              nickname
+              slug
             }
           }
         }
