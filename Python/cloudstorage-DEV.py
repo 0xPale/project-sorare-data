@@ -3,15 +3,18 @@ from google.cloud import storage
 import os
 import getpass
 
-from variables import outputFolder, outputCSVPlayer, outputCSVSubscription
+from variables import outputFolderLocal, outputFolderCloud, googleAppCredentialsCloud,\
+    outputCSVPlayer, googleAppCredentialsLocal, googleAppCredentialsCloud
 
-print(getpass.getuser())
+if getpass.getuser() == "benjamin":
+    googleAppCredentials = googleAppCredentialsLocal
+    outputFolder = outputFolderLocal
+else:
+    googleAppCredentials = googleAppCredentialsCloud
+    outputFolder = outputFolderCloud
 
-exit()
-
-# Setting the path to the credentials file.
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/benjamin/Documents/Projets/project-sorare-data/sorare-data-341411-23575a5fa81a.json" #Local computer
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/benja_sicard/project-sorare-data/sorare-data-341411-23575a5fa81a.json" #Cloud on Google Compute Engine instance
+# This is a way to set the environment variable for the Google Cloud API.
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= googleAppCredentials
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""

@@ -2,7 +2,13 @@ import websocket
 import json
 import time
 from datetime import datetime
-from variables import outputFolder
+import getpass
+from variables import outputFolderLocal, outputFolderCloud
+
+if getpass.getuser() == "benjamin":
+    outputFolder = outputFolderLocal
+else:
+    outputFolder = outputFolderCloud
 
 # This is the WebSocket URL for the Sorare API.
 w_socket = 'wss://ws.sorare.com/cable'
@@ -79,8 +85,7 @@ def on_message(ws, data):
   elif type == 'ping':
     pass
   elif message.get('message') is not None:
-    with open('/home/benja_sicard/output/python/subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
-    #with open(outputFolder + 'subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
+    with open(outputFolder + 'subscription/marketUpdate_dump_' + datetime.now().strftime("%Y%m%d_%H") + '.json', "a") as output_file:
       output_file.write(str(message_raw) + "\n")
 
 def on_error(ws, error):

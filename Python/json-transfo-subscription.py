@@ -2,8 +2,17 @@ import json
 import pandas as pd
 import glob
 import shutil
+import getpass
 from datetime import datetime
-from variables import outputFolder, outputCSVSubscription, outputJSONSubscription
+from variables import outputFolderLocal, outputFolderCloud, outputCSVSubscription, outputJSONSubscription
+
+# This is a way to set the output folder depending on the user.
+#     If the user is benjamin, then the output folder is the local one.
+#     If the user is not benjamin, then the output folder is the cloud one.
+if getpass.getuser() == "benjamin":
+    outputFolder = outputFolderLocal
+else:
+    outputFolder = outputFolderCloud
 
 # Reading all the files in the folder and then it is creating a dataframe for each file.
 # Then it is concatenating all the dataframes into one.

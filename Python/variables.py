@@ -1,11 +1,16 @@
 #Filepath parameters
-outputFolder = "../output/python/"
+outputFolderLocal = "/Users/benjamin/Documents/Projets/project-sorare-data/output/python"
+outputFolderCloud = "/home/benja_sicard/output/python/"
+
 outputCSV = "csv/"
 outputCSVPlayer = "player/csv/"
 outputCSVSubscription = "subscription/csv/"
 outputJSON = "json/"
 outputJSONPlayer = "player/json"
 outputJSONSubscription = "subscription/"
+
+googleAppCredentialsLocal = "/Users/benjamin/Documents/Projets/project-sorare-data/sorare-data-341411-23575a5fa81a.json"
+googleAppCredentialsCloud = "/home/benja_sicard/project-sorare-data/sorare-data-341411-23575a5fa81a.json"
 
 #Parameters for requests
 endpoint = f"https://api.sorare.com/graphql"

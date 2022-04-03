@@ -4,8 +4,14 @@ import time
 import glob
 import pickle
 import os
+import getpass
 from pathlib import Path
-from variables import outputFolder, outputCSV, outputJSON
+from variables import outputFolderLocal, outputFolderCloud, outputCSV, outputJSON
+
+if getpass.getuser() == "benjamin":
+    outputFolder = outputFolderLocal
+else:
+    outputFolder = outputFolderCloud
 
 #Time
 start_time = time.time()

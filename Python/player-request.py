@@ -3,8 +3,14 @@ import requests
 import json
 import time
 import pandas as pd
+import getpass
 #Parameters from variables
-from variables import outputFolder, outputCSV, outputJSONPlayer, endpoint, headers, queryPlayer
+from variables import outputFolderLocal, outputFolderCloud, outputCSV, outputJSONPlayer, endpoint, headers, queryPlayer
+
+if getpass.getuser() == "benjamin":
+    outputFolder = outputFolderLocal
+else:
+    outputFolder = outputFolderCloud
 
 #Time
 start_time = time.time()

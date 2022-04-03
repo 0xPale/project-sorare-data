@@ -1,6 +1,12 @@
 import pandas as pd
 import time
-from variables import outputFolder, outputCSV
+import getpass
+from variables import outputFolderLocal, outputFolderCloud, outputCSV
+
+if getpass.getuser() == "benjamin":
+    outputFolder = outputFolderLocal
+else:
+    outputFolder = outputFolderCloud
 
 #Time
 start_time = time.time()

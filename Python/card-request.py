@@ -3,8 +3,14 @@ import requests
 import json
 import time
 import shutil
+import getpass
 #Parameters from variables
-from variables import outputFolder, outputJSON, endpoint, headers, queryCard
+from variables import outputFolderLocal, outputFolderCloud, outputJSON, endpoint, headers, queryCard
+
+if getpass.getuser() == "benjamin":
+    outputFolder = outputFolderLocal
+else:
+    outputFolder = outputFolderCloud
 
 #Time
 start_time = time.time()

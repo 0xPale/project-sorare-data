@@ -3,7 +3,13 @@ import pandas as pd
 import time
 import glob
 import os
-from variables import outputFolder, outputCSVPlayer, outputJSONPlayer
+import getpass
+from variables import outputFolderLocal, outputFolderCloud, outputCSVPlayer, outputJSONPlayer
+
+if getpass.getuser() == "benjamin":
+    outputFolder = outputFolderLocal
+else:
+    outputFolder = outputFolderCloud
 
 # Reading all the files in the folder.
 read_files = glob.glob(outputFolder + outputJSONPlayer + "*.json")

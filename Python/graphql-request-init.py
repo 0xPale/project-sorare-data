@@ -1,12 +1,14 @@
 from datetime import datetime
 import requests
 import json
-import time
+import getpass
 #Parameters from variables
-from variables import outputFolder, outputJSON, endpoint, headers, query
+from variables import outputFolderLocal, outputFolderCloud, outputJSON, endpoint, headers, query
 
-# Storing the time at which the script is launched.
-start_time = time.time()
+if getpass.getuser() == "benjamin":
+    outputFolder = outputFolderLocal
+else:
+    outputFolder = outputFolderCloud
 
 #Init
 # Sending a query to the API and returning the response.
@@ -35,6 +37,3 @@ if r.status_code == 200: #success
 
 else:
     raise Exception(f"Query failed to run with a {r.status_code}.")
-
-#Time
-print("--- %s seconds ---" % (time.time() - start_time))
