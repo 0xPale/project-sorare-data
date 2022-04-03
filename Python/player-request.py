@@ -54,7 +54,7 @@ r = requests.post(endpoint, json={"query": queryPlayer, "variables": {"playerLis
 if r.status_code == 200: #success
     raw_data = r.json()
     dic = raw_data["data"]["players"]
-    with open(outputFolder + 'dev/allPlayerScore_' + str(sliceStart) + '_' + datetime.now().isoformat() + '.json', 'w') as json_file:
+    with open(outputFolder + outputJSONPlayer + 'allPlayerScore_' + str(sliceStart) + '_' + datetime.now().isoformat() + '.json', 'w') as json_file:
         json.dump(dic, json_file)
 
 else:
