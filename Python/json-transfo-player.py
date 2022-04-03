@@ -2,10 +2,8 @@ import json
 import pandas as pd
 import time
 import glob
-import pickle
 import os
-from pathlib import Path
-from variables import outputFolder, outputCSV, outputJSONPlayer
+from variables import outputFolder, outputCSVPlayer, outputJSONPlayer
 
 # Reading all the files in the folder.
 read_files = glob.glob(outputFolder + outputJSONPlayer + "*.json")
@@ -84,9 +82,9 @@ for file in read_files:
         "gameweek_score", "decisive_score", "category", "stat", "statValue", "points", "score"])
 
     #Export csv
-    df_player.to_csv(outputFolder + outputCSV + "player.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "player.csv"))
-    df_cardSupply.to_csv(outputFolder + outputCSV + "cardSupply.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "cardSupply.csv"))
-    df_allSo5Scores.to_csv(outputFolder + outputCSV + "allSo5Scores.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "allSo5Scores.csv"))
+    df_player.to_csv(outputFolder + outputCSVPlayer + "player.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSVPlayer + "player.csv"))
+    df_cardSupply.to_csv(outputFolder + outputCSVPlayer + "cardSupply.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSVPlayer + "cardSupply.csv"))
+    df_allSo5Scores.to_csv(outputFolder + outputCSVPlayer + "allSo5Scores.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSVPlayer + "allSo5Scores.csv"))
 
     #Time
     print("--- %s seconds ---" % (time.time() - start_time))
