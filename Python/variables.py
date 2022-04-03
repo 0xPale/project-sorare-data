@@ -1,10 +1,10 @@
 #Filepath parameters
 outputFolder = "../output/python/"
 outputCSV = "csv/"
-outputCSVPlayer = "json_player/csv/"
+outputCSVPlayer = "player/csv/"
 outputCSVSubscription = "subscription/csv/"
-outputJSON = "json/json/"
-outputJSONPlayer = "json_player/"
+outputJSON = "json/"
+outputJSONPlayer = "player/json"
 outputJSONSubscription = "subscription/"
 
 #Parameters for requests
