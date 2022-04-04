@@ -21,3 +21,28 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
             source_file_name, destination_blob_name
         )
     )
+
+
+def load_csv_file(uri, table_id, job_config):
+    """Load a csv to google big query."""
+    # The path of the csv file in GCS bucket
+    # uri = "gs://your-bucket-name/filename.csv"
+    # The table in which the file needs to be uploaded
+    # table_id = "database.schema.table"
+    # The job configuration
+    # job_config = bigquery.LoadJobConfig()
+
+    bigquery_client = bigquery.Client()
+
+    load_job = bigquery_client.load_table_from_uri(
+    uri, table_id, job_config=job_config
+    )  # Make an API request.
+
+    load_job.result()  # Waits for the job to complete.
+
+    destination_table = bigquery_client.get_table(table_id)  # Make an API request.
+    print(
+        "Loaded {} rows.".format(
+            destination_table.num_rows
+        )
+    )
