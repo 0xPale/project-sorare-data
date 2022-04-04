@@ -17,6 +17,10 @@ googleAppCredentialsCloud = "/home/benja_sicard/project-sorare-data/sorare-data-
 
 # This is the name of the bucket that will be created in the cloud.
 bucket_name = "sorare-data"
+# It's the name of the database that will be created in the cloud.
+database_name = "sorare-data-341411"
+# It's the name of the schema that will be created in the cloud.
+schema_name = "sorare"
 
 #Parameters for requests
 # It's a string that contains the url of the endpoint.
