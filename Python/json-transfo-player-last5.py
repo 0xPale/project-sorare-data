@@ -14,10 +14,7 @@ else:
 
 # Deleting the files in the folder.
 for f in glob.glob(outputFolder + outputCSVPlayer + "*.csv"):
-    try:
-        os.remove(f)
-    except OSError:
-        pass
+    os.remove(f)
 
 # Creating a date and time for the extraction.
 extractionDate = datetime.now().isoformat()
