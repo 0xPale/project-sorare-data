@@ -1,7 +1,7 @@
 import os
 import getpass
 
-from variables import outputFolderLocal, outputFolderCloud, googleAppCredentialsCloud,\
+from variables import outputFolderLocal, outputFolderCloud,\
     outputCSVPlayer, googleAppCredentialsLocal, googleAppCredentialsCloud
 
 from functions import upload_blob
