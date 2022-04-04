@@ -72,8 +72,8 @@ job_config_score = bigquery.LoadJobConfig(
 )
 
 #Player csv loading
-#load_csv_file(uri_player, table_id_player, job_config_player)
+load_csv_file(uri_player, table_id_player, job_config_player)
 #cardSupply csv loading
-#load_csv_file(uri_cardSupply, table_id_cardSupply, job_config_cardSupply)
+load_csv_file(uri_cardSupply, table_id_cardSupply, job_config_cardSupply)
 #Scores csv loading
 load_csv_file(uri_score, table_id_score, job_config_score)

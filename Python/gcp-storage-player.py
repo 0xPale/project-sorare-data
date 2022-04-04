@@ -23,4 +23,5 @@ bucket_name = "sorare-data"
 # Uploading the files to the cloud.
 upload_blob(bucket_name, outputFolder + outputCSVPlayer + "player.csv", "player.csv")
 upload_blob(bucket_name, outputFolder + outputCSVPlayer + "allSo5Scores.csv", "allSo5Scores.csv")
+#upload_blob(bucket_name, outputFolder + outputCSVPlayer + "lastSo5Scores.csv", "lastSo5Scores.csv")
 upload_blob(bucket_name, outputFolder + outputCSVPlayer + "cardSupply.csv", "cardSupply.csv")
