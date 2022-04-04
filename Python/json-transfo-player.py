@@ -4,12 +4,16 @@ import time
 import glob
 import os
 import getpass
+from datetime import datetime
 from variables import outputFolderLocal, outputFolderCloud, outputCSVPlayer, outputJSONPlayer
 
 if getpass.getuser() == "benjamin":
     outputFolder = outputFolderLocal
 else:
     outputFolder = outputFolderCloud
+
+# Creating a date and time for the extraction.
+extractionDate = datetime.now().isoformat()
 
 # Reading all the files in the folder.
 read_files = glob.glob(outputFolder + outputJSONPlayer + "*.json")
@@ -80,12 +84,17 @@ for file in read_files:
     df_cardSupply = df_cardSupply.drop(columns=["cardSupply"])
     df_allSo5Scores = df_allSo5Scores.drop(columns=["allSo5Scores_nodes", "detailedScore", "game_fixture"])
 
-# A way to reindex the columns of the dataframe.
+    # A way to reindex the columns of the dataframe.
     df_cardSupply = df_cardSupply.reindex(columns=["player_slug","cardSupply_season", "cardSupply_limited","cardSupply_rare","cardSupply_superRare","cardSupply_unique"])
     df_allSo5Scores = df_allSo5Scores.reindex(columns=[
         "player_slug","game_fixture_slug","game_fixture_gameWeek","game_fixture_eventType", "game_date", 
         "game_competition_slug", "game_homeTeam_slug", "game_homeGoals", "game_awayTeam_slug", "game_awayGoals",
         "gameweek_score", "decisive_score", "category", "stat", "statValue", "points", "score"])
+    
+    # Adding a new column to the dataframe with the date of the extraction.
+    df_player['extracted_at'] = extractionDate
+    df_cardSupply['extracted_at'] = extractionDate
+    df_allSo5Scores['extracted_at'] = extractionDate
 
     #Export csv
     df_player.to_csv(outputFolder + outputCSVPlayer + "player.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSVPlayer + "player.csv"))
