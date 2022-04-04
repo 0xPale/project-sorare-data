@@ -64,33 +64,6 @@ job_config_score = bigquery.LoadJobConfig(
         bigquery.SchemaField("statValue", "FLOAT"),
         bigquery.SchemaField("points", "FLOAT"),
         bigquery.SchemaField("score", "FLOAT"),
-    ],
-    field_delimiter=";",
-    skip_leading_rows=1,
-    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
-    # The source format defaults to CSV, so the line below is optional.
-    source_format=bigquery.SourceFormat.CSV,
-)
-
-job_config_score = bigquery.LoadJobConfig(
-    schema=[
-        bigquery.SchemaField("player_slug", "STRING"),
-        bigquery.SchemaField("game_fixture_slug", "STRING"),
-        bigquery.SchemaField("game_fixture_gameWeek", "FLOAT"),
-        bigquery.SchemaField("game_fixture_eventType", "STRING"),
-        bigquery.SchemaField("game_date", "TIMESTAMP"),
-        bigquery.SchemaField("game_competition_slug", "STRING"),
-        bigquery.SchemaField("game_homeTeam_slug", "STRING"),
-        bigquery.SchemaField("game_homeGoals", "FLOAT"),
-        bigquery.SchemaField("game_awayTeam_slug", "STRING"),
-        bigquery.SchemaField("game_awayGoals", "FLOAT"),
-        bigquery.SchemaField("gameweek_score", "FLOAT"),
-        bigquery.SchemaField("decisive_score", "FLOAT"),
-        bigquery.SchemaField("category", "STRING"),
-        bigquery.SchemaField("stat", "STRING"),
-        bigquery.SchemaField("statValue", "FLOAT"),
-        bigquery.SchemaField("points", "FLOAT"),
-        bigquery.SchemaField("score", "FLOAT"),
         bigquery.SchemaField("extracted_at", "TIMESTAMP"),
     ],
     field_delimiter=";",
