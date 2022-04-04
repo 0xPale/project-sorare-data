@@ -7,6 +7,7 @@ outputCSVPlayer = "player/csv/"
 outputCSVSubscription = "subscription/csv/"
 outputJSON = "json/"
 outputJSONPlayer = "player/json/"
+outputJSONPlayerLast = "player/json_last/"
 outputJSONSubscription = "subscription/"
 
 googleAppCredentialsLocal = "/Users/benjamin/Documents/Projets/project-sorare-data/sorare-data-341411-23575a5fa81a.json"
@@ -221,7 +222,109 @@ query allPlayerScore($playerList: [String!]!) {
 }
 """
 
-##################################@
+################################################################################
+
+queryPlayerLast5 = """
+query last5PlayerScore($playerList: [String!]!) {
+  players(slugs: $playerList) {
+    #Player info
+    player_slug: slug
+    player_name: displayName
+    position
+    age
+    birthDate
+    appearances
+    followers: subscriptionsCount
+    #Club
+    club: activeClub {
+      country {
+        code
+        slug
+      }
+      slug
+      code
+      name
+      league: domesticLeague {
+        slug
+        name
+      }
+    }
+    #Supply
+    cardSupply {
+      cardSupply: season {
+        season: startYear
+      }
+      cardSupply_limited: limited
+      cardSupply_rare: rare
+      cardSupply_superRare: superRare
+      cardSupply_unique: unique
+    }
+    stats(seasonStartYear: 2021) {
+      appearances
+      assists
+      goals
+      minutesPlayed
+      yellowCards
+      redCards
+      substituteIn
+      substituteOut
+    }
+    status {
+      lastFifteenSo5Appearances
+      lastFifteenSo5AverageScore
+      lastFiveSo5Appearances
+      lastFiveSo5AverageScore
+      playingStatus
+    }
+    #Scores
+    so5Scores (last: 5) {
+      game {
+        date
+        fixture: so5Fixture {
+          eventType
+          slug
+          gameWeek
+        }
+        competition {
+          slug
+        }
+        homeTeam {
+          ... on Club {
+            slug
+          }
+          ... on NationalTeam {
+            slug
+          }
+        }
+        homeGoals
+        awayTeam {
+          ... on Club {
+            slug
+          }
+          ... on NationalTeam {
+            slug
+          }
+        }
+        awayGoals
+      }
+
+      score
+      decisive: decisiveScore {
+        score: totalScore
+      }
+      detailedScore {
+        category
+        stat
+        statValue
+        points
+        score: totalScore
+      }
+    }
+  }
+}
+"""
+
+################################################################################
 queryCard = """
 query allCardsWithCursor($currentCursor: String) {
   allCards(
