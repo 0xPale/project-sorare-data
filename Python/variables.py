@@ -231,6 +231,9 @@ query allCardsWithCursor($currentCursor: String) {
     nodes {
       card_slug: slug
       card_name: name
+      player {
+        slug
+        }
       card_rarity: rarity
       card_season: season {
         startYear
