@@ -2,7 +2,7 @@ from google.cloud import bigquery
 import os
 import getpass
 
-from variables import googleAppCredentialsCloud, googleAppCredentialsLocal
+from variables import googleAppCredentialsCloud, googleAppCredentialsLocal, bucket_name, database_name, schema_name
 from functions import load_csv_file
 
 # This is a way to set the environment variable for the Google Cloud API.
@@ -16,15 +16,15 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= googleAppCredentials
 
 ########################################################################################################################
 
-uri_player = "gs://sorare-data/player.csv"
-uri_cardSupply = "gs://sorare-data/cardSupply.csv"
-uri_score = "gs://sorare-data/allSo5Scores.csv"
-uri_lastScore = "gs://sorare-data/lastSo5Scores.csv"
+uri_player = "gs://" + bucket_name + "/" + "player.csv"
+uri_cardSupply = "gs://" + bucket_name + "/" + "cardSupply.csv"
+uri_score = "gs://" + bucket_name + "/" + "allSo5Scores.csv"
+uri_lastScore = "gs://" + bucket_name + "/" + "lastSo5Scores.csv"
 
 # A way to set the name of the table.
-table_id_player = "sorare-data-341411.sorare.player"
-table_id_cardSupply = "sorare-data-341411.sorare.cardSupply"
-table_id_score = "sorare-data-341411.sorare.score"
+table_id_player = database_name + "." + schema_name + "." + "player"
+table_id_cardSupply = database_name + "." + schema_name + "." + "cardSupply"
+table_id_score = database_name + "." + schema_name + "." + "score"
 
 # Setting the parameters for the load job.
 job_config_player = bigquery.LoadJobConfig(
@@ -106,6 +106,6 @@ load_csv_file(uri_player, table_id_player, job_config_player)
 #cardSupply csv loading
 load_csv_file(uri_cardSupply, table_id_cardSupply, job_config_cardSupply)
 #Scores csv loading
-load_csv_file(uri_score, table_id_score, job_config_score)
-#Scores csv loading
-#load_csv_file(uri_lastScore, table_id_score, job_config_lastScore)
+#load_csv_file(uri_score, table_id_score, job_config_score)
+#Last Scores csv loading
+load_csv_file(uri_lastScore, table_id_score, job_config_lastScore)
