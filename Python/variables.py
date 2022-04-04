@@ -2,6 +2,7 @@
 outputFolderLocal = "/Users/benjamin/Documents/Projets/project-sorare-data/output/python/"
 outputFolderCloud = "/home/benja_sicard/output/python/"
 
+# It's the path to the output folder.
 outputCSV = "csv/"
 outputCSVPlayer = "player/csv/"
 outputCSVSubscription = "subscription/csv/"
@@ -10,12 +11,18 @@ outputJSONPlayer = "player/json/"
 outputJSONPlayerLast = "player/json_last/"
 outputJSONSubscription = "subscription/"
 
+# It's the path to the google app credentials file.
 googleAppCredentialsLocal = "/Users/benjamin/Documents/Projets/project-sorare-data/sorare-data-341411-23575a5fa81a.json"
 googleAppCredentialsCloud = "/home/benja_sicard/project-sorare-data/sorare-data-341411-23575a5fa81a.json"
 
+# This is the name of the bucket that will be created in the cloud.
+bucket_name = "sorare-data"
+
 #Parameters for requests
+# It's a string that contains the url of the endpoint.
 endpoint = f"https://api.sorare.com/graphql"
 
+# It's the header of the request. It's a dictionary of key-value pairs.
 headers = {
   "Accept-Encoding": "gzip,deflate", 
   "Content-Type": "application/json",
