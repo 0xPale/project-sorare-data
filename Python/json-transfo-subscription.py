@@ -14,6 +14,9 @@ if getpass.getuser() == "benjamin":
 else:
     outputFolder = outputFolderCloud
 
+# Creating a timestamp of the current date and time.
+extractionDate = datetime.now().isoformat()
+
 # Reading all the files in the folder and then it is creating a dataframe for each file.
 # Then it is concatenating all the dataframes into one.
 read_files = glob.glob(outputFolder + outputJSONSubscription + "*.json")
@@ -43,23 +46,49 @@ for file in read_files:
 # message_result_data_publicMarketWasUpdated_transfer_transfer_type.
 df = df.dropna(subset=['message_result_data_publicMarketWasUpdated_transfer_transfer_type'])
 
-df = df.reindex(columns=[
+# Adding a new column to the dataframe with the date of the extraction.
+df['extracted_at'] = extractionDate
+
+# Creating a new dataframe with the columns that we want.
+df_card = df.reindex(columns=[
+    "message_result_data_publicMarketWasUpdated_card_slug",
+    "message_result_data_publicMarketWasUpdated_card_name",
+    "message_result_data_publicMarketWasUpdated_player_slug",
+    "message_result_data_publicMarketWasUpdated_card_rarity",
+    "message_result_data_publicMarketWasUpdated_card_season_startYear",
+    "extracted_at"
+    ])
+
+# Renaming the columns.
+df_card = df_card.rename(columns={
+    "message_result_data_publicMarketWasUpdated_card_slug": "card_slug",
+    "message_result_data_publicMarketWasUpdated_card_name": "card_name",
+    "message_result_data_publicMarketWasUpdated_player_slug": "player_slug",
+    "message_result_data_publicMarketWasUpdated_card_rarity": "card_rarity",
+    "message_result_data_publicMarketWasUpdated_card_season_startYear": "card_season_startYear"
+    })
+
+df_transfer = df.reindex(columns=[
     "message_result_data_publicMarketWasUpdated_card_slug",
     "message_result_data_publicMarketWasUpdated_transfer_sorareAccount_manager_slug",
     "message_result_data_publicMarketWasUpdated_transfer_sorareAccount_manager_nickname",
     "message_result_data_publicMarketWasUpdated_transfer_transfer_date",
     "message_result_data_publicMarketWasUpdated_transfer_transfer_type",
     "message_result_data_publicMarketWasUpdated_transfer_transfer_priceETH",
-    "message_result_data_publicMarketWasUpdated_transfer_transfer_priceFiat_usd"])
+    "message_result_data_publicMarketWasUpdated_transfer_transfer_priceFiat_usd",
+    "extracted_at"
+    ])
 
-df = df.rename(columns={
+df_transfer = df_transfer.rename(columns={
     "message_result_data_publicMarketWasUpdated_card_slug": "card_slug",
     "message_result_data_publicMarketWasUpdated_transfer_sorareAccount_manager_slug": "manager_slug",
     "message_result_data_publicMarketWasUpdated_transfer_sorareAccount_manager_nickname": "manager_nickname",
     "message_result_data_publicMarketWasUpdated_transfer_transfer_date": "transfer_date",
     "message_result_data_publicMarketWasUpdated_transfer_transfer_type": "transfer_type",
     "message_result_data_publicMarketWasUpdated_transfer_transfer_priceETH": "transfer_priceETH",
-    "message_result_data_publicMarketWasUpdated_transfer_transfer_priceFiat_usd": "transfer_priceFiat_usd"})
+    "message_result_data_publicMarketWasUpdated_transfer_transfer_priceFiat_usd": "transfer_priceFiat_usd"
+    })
 
 #Export csv
-df.to_csv(outputFolder + outputCSVSubscription + "subscriptionTransfer_" + datetime.now().isoformat() + ".csv", sep=";", index= False)
+df_card.to_csv(outputFolder + outputCSVSubscription + "subscriptionCard_" + extractionDate + ".csv", sep=";", index= False)
+df_transfer.to_csv(outputFolder + outputCSVSubscription + "subscriptionTransfer_" + extractionDate + ".csv", sep=";", index= False)
