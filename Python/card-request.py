@@ -52,6 +52,7 @@ while i <= maxLoop and hasNextPage == True:
           f.write(currentCursor)
 
       print(str(i) + " request success + hasNextPage = " + str(hasNextPage))
+      time.sleep(1)
 
       i = i+1
   
