@@ -1,10 +1,11 @@
 import os
 import getpass
+import glob
 
 from variables import outputFolderLocal, outputFolderCloud,\
-    outputCSVPlayer, googleAppCredentialsLocal, googleAppCredentialsCloud
+    outputCSVSubscription, googleAppCredentialsLocal, googleAppCredentialsCloud, bucket_name
 
-from functions import upload_blob
+from functions import list_blobs_with_prefix, move_blob, upload_blob
 
 # This is a way to set the environment variable for the Google Cloud API.
 if getpass.getuser() == "benjamin":
@@ -17,10 +18,10 @@ else:
 # This is a way to set the environment variable for the Google Cloud API.
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= googleAppCredentials
 
+# Moving the files from the subscription folder to the subscription-done folder.
+for blob in list_blobs_with_prefix(bucket_name, prefix="subscription"):
+    move_blob(bucket_name, blob.name, bucket_name + "done/" + blob.name)
 
-bucket_name = "sorare-data"
-
-# Uploading the files to the cloud.
-upload_blob(bucket_name, outputFolder + outputCSVPlayer + "player.csv", "player.csv")
-upload_blob(bucket_name, outputFolder + outputCSVPlayer + "allSo5Scores.csv", "allSo5Scores.csv")
-upload_blob(bucket_name, outputFolder + outputCSVPlayer + "cardSupply.csv", "cardSupply.csv")
+# A way to upload the files to the Google Cloud Storage.
+for f in glob.glob(outputFolder + outputCSVSubscription + "*.csv"):
+    upload_blob(bucket_name, f, os.path.basename(f))
