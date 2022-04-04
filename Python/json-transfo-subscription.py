@@ -14,6 +14,10 @@ if getpass.getuser() == "benjamin":
 else:
     outputFolder = outputFolderCloud
 
+# Moving the files to the done folder.
+for f in glob.glob(outputFolder + outputCSVSubscription + "*.csv"):
+    shutil.move(f, outputFolder + outputCSVSubscription + "done/")
+
 # Creating a timestamp of the current date and time.
 extractionDate = datetime.now().isoformat()
 
