@@ -52,19 +52,19 @@ while i <= maxLoop and hasNextPage == True:
           f.write(currentCursor)
 
       print(str(i) + " request success + hasNextPage = " + str(hasNextPage))
-      time.sleep(1)
+      time.sleep(1.5)
 
       i = i+1
   
   elif r.status_code == 429: #Time out
 
-      time.sleep(30)
+      time.sleep(60)
       print("Status code 429 - Waited for 30s for iteration " + str(i))
       i = i+1
   
   elif r.status_code == 502: #Time out
 
-      time.sleep(30)
+      time.sleep(60)
       print("Status code 502 - Waited for 30s for iteration " + str(i))
       i = i+1
 
