@@ -121,9 +121,9 @@ def load_csv_file(uri, table_id, job_config):
 
     load_job.result()  # Waits for the job to complete.
 
-    destination_table = bigquery_client.get_table(table_id)  # Make an API request.
-    print(
-        "Loaded {} rows.".format(
-            destination_table.num_rows
-        )
-    )
+    # destination_table = bigquery_client.get_table(table_id)  # Make an API request.
+    # print(
+    #     "Loaded {} rows.".format(
+    #         destination_table.num_rows
+    #     )
+    # )
