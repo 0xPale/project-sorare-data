@@ -25,7 +25,6 @@ read_files = glob.glob(outputFolder + outputJSONPlayerLast + "*.json")
 # Reading all the files in the folder and then it is creating a dataframe for each file.
 # Then it is concatenating all the dataframes into one.
 for file in read_files:   
-    print(file)  
 
     #Time
     start_time = time.time()
@@ -80,8 +79,6 @@ for file in read_files:
     # Creating a new column for each key of the dict in the column allSo5Scores_nodes.
     df_lastSo5Scores = df_lastSo5Scores.explode("detailedScore", ignore_index=True)
     df_lastSo5Scores = df_lastSo5Scores.join(pd.json_normalize(df_lastSo5Scores.detailedScore, sep="_"))
-
-    print(df_lastSo5Scores.columns)
 
     ####################################################################################################################################
     #On drop la colonne qui contenait le dict de valeurs / de keys et qui est maintenant inutile puis on export sous csv
