@@ -81,13 +81,33 @@ for file in read_files:
     df_lastSo5Scores = df_lastSo5Scores.explode("detailedScore", ignore_index=True)
     df_lastSo5Scores = df_lastSo5Scores.join(pd.json_normalize(df_lastSo5Scores.detailedScore, sep="_"))
 
+    print(df_lastSo5Scores.columns)
+
     ####################################################################################################################################
     #On drop la colonne qui contenait le dict de valeurs / de keys et qui est maintenant inutile puis on export sous csv
     # Dropping the column and player_cardSupply and player_allSo5Scores_nodes. On drop aussi les colonnes syétamtiquement vides.
 
     # Dropping the column cardSupply and allSo5Scores_nodes.
-    df_cardSupply = df_cardSupply.drop(columns=["cardSupply"])
-    df_lastSo5Scores = df_lastSo5Scores.drop(columns=["so5Scores", "detailedScore", "game_fixture"])
+    # A way to drop a column if it exists.
+    try:
+        df_cardSupply = df_cardSupply.drop(columns=["cardSupply"])
+    except:
+        pass
+
+    try:
+        df_lastSo5Scores = df_lastSo5Scores.drop(columns=["so5Scores"])
+    except:
+        pass
+
+    try:
+        df_lastSo5Scores = df_lastSo5Scores.drop(columns=["detailedScore"])
+    except:
+        pass
+    
+    try:
+        df_lastSo5Scores = df_lastSo5Scores.drop(columns=["game_fixture"])
+    except:
+        pass
 
     # A way to reindex the columns of the dataframe.
     df_cardSupply = df_cardSupply.reindex(columns=["player_slug","cardSupply_season", "cardSupply_limited","cardSupply_rare","cardSupply_superRare","cardSupply_unique"])

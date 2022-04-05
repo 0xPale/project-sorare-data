@@ -85,8 +85,26 @@ for file in read_files:
     # Dropping the column and player_cardSupply and player_allSo5Scores_nodes. On drop aussi les colonnes syétamtiquement vides.
 
     # Dropping the column cardSupply and allSo5Scores_nodes.
-    df_cardSupply = df_cardSupply.drop(columns=["cardSupply"])
-    df_allSo5Scores = df_allSo5Scores.drop(columns=["allSo5Scores_nodes", "detailedScore", "game_fixture"])
+    # A way to drop a column if it exists.
+    try:
+        df_cardSupply = df_cardSupply.drop(columns=["cardSupply"])
+    except:
+        pass
+
+    try:
+        df_allSo5Scores = df_allSo5Scores.drop(columns=["allSo5Scores_nodes"])
+    except:
+        pass
+
+    try:
+        df_allSo5Scores = df_allSo5Scores.drop(columns=["detailedScore"])
+    except:
+        pass
+    
+    try:
+        df_allSo5Scores = df_allSo5Scores.drop(columns=["game_fixture"])
+    except:
+        pass
 
     # A way to reindex the columns of the dataframe.
     df_cardSupply = df_cardSupply.reindex(columns=["player_slug","cardSupply_season", "cardSupply_limited","cardSupply_rare","cardSupply_superRare","cardSupply_unique"])
