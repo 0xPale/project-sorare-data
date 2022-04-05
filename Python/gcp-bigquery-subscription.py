@@ -18,7 +18,9 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= googleAppCredentials
 
 # Sorting the list of blobs by name.
 blobs = list_blobs_with_prefix(bucket_name, prefix="subscription")
-blobs.sort()
+print(blobs)
+exit()
+#blobs.sort() #AttributeError: 'HTTPIterator' object has no attribute 'sort'
 
 # Defining the location of the files to be loaded.
 uri_card = "gs://" + bucket_name + "/" + blobs[0] #subscriptionCard_DATETIME.csv
