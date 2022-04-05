@@ -18,9 +18,12 @@ else:
 # This is a way to set the environment variable for the Google Cloud API.
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= googleAppCredentials
 
-# Moving the files from the subscription folder to the subscription-done folder.
-for blob in list_blobs_with_prefix(bucket_name, prefix="subscription"):
-    move_blob(bucket_name, blob.name, bucket_name + "done/" + blob.name)
+try:
+    # Moving the files from the subscription folder to the subscription-done folder.
+    for blob in list_blobs_with_prefix(bucket_name, prefix="subscription"):
+        move_blob(bucket_name, blob.name, bucket_name + "done/" + blob.name)
+except:
+    print("No subscription files to move.")
 
 # A way to upload the files to the Google Cloud Storage.
 for f in glob.glob(outputFolder + outputCSVSubscription + "*.csv"):
