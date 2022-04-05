@@ -24,7 +24,8 @@ read_files = glob.glob(outputFolder + outputJSONPlayerLast + "*.json")
 
 # Reading all the files in the folder and then it is creating a dataframe for each file.
 # Then it is concatenating all the dataframes into one.
-for file in read_files:     
+for file in read_files:   
+    print(file)  
 
     #Time
     start_time = time.time()
