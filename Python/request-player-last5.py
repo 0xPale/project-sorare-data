@@ -5,7 +5,7 @@ import time
 import pandas as pd
 import getpass
 #Parameters from variables
-from variables import outputFolderLocal, outputFolderCloud, outputCSV, outputJSONPlayerLast, endpoint, headers, queryPlayerLast5
+from variables import outputFolderLocal, outputFolderCloud, outputClubsAndPlayers, outputJSONPlayerLast, endpoint, headers, queryPlayerLast5
 
 if getpass.getuser() == "benjamin":
     outputFolder = outputFolderLocal
@@ -16,10 +16,10 @@ else:
 start_time = time.time()
 
 # Reading the csv file with the player data and creating a dataframe with the data.
-df_player = pd.read_csv(outputFolder + outputCSV + "player_deduplicate.csv", sep=";")
+df_player = pd.read_csv(outputFolder + outputClubsAndPlayers + "playersFromClubs.csv", sep=";")
 
 # Removing duplicates from the list of players.
-playerList = list(dict.fromkeys(df_player["player_slug"].tolist()))
+playerList = list(dict.fromkeys(df_player["slug"].tolist()))
 
 # Counting the number of players in the list of players.
 lenPlayerList = len(playerList)
