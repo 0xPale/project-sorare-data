@@ -20,13 +20,24 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= googleAppCredentials
 blobs = list_blobs_with_prefix(bucket_name, prefix="subscription")
 #blobs.sort() #AttributeError: 'HTTPIterator' object has no attribute 'sort'
 
-# Defining the location of the files to be loaded.
-uri_card = "gs://" + bucket_name + "/" + blobs[0] #subscriptionCard_DATETIME.csv
-uri_transfer = "gs://" + bucket_name + "/" + blobs[1] #subscriptionTransfer_DATETIME.csv
+# A way to select the right files to be loaded.
+for blob in blobs:
+    if "subscriptionCard" in blob.name:
+        blob_card = blob.name
+    elif "subscriptionTransfer" in blob.name:
+        blob_transfer = blob.name
+    else:
+        pass
 
-print(uri_card)
-print(uri_transfer)
-exit()
+# Defining the location of the files to be loaded.
+try:
+    uri_card = "gs://" + bucket_name + "/" + blob_card #subscriptionCard_DATETIME.csv
+except:
+    pass
+try:
+    uri_transfer = "gs://" + bucket_name + "/" + blob_transfer #subscriptionTransfer_DATETIME.csv
+except:
+    pass
 
 # A way to set the name of the table.
 table_id_card = database_name + "." + schema_name + "." + "card"
@@ -34,7 +45,14 @@ table_id_transfer = database_name + "." + schema_name + "." + "transfer"
 
 # Setting the parameters for the load job.
 job_config_card = bigquery.LoadJobConfig(
-    autodetect=True,
+    schema=[
+        bigquery.SchemaField("card_slug", "STRING"),
+        bigquery.SchemaField("card_name", "STRING"),
+        bigquery.SchemaField("player_slug", "STRING"),
+        bigquery.SchemaField("card_rarity", "STRING"),
+        bigquery.SchemaField("card_season_startYear", "INTEGER"),
+        bigquery.SchemaField("extracted_at", "TIMESTAMP"),
+    ],
     field_delimiter=";",
     skip_leading_rows=1,
     write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
@@ -61,6 +79,13 @@ job_config_transfer = bigquery.LoadJobConfig(
 )
 
 #Card csv loading
-load_csv_file(uri_card, table_id_card, job_config_card)
+# This is a way to avoid errors when the files are not available.
+try:
+    load_csv_file(uri_card, table_id_card, job_config_card)
+except:
+    pass
 #Transfer csv loading
-load_csv_file(uri_card, table_id_transfer, job_config_transfer)
+try:
+    load_csv_file(uri_transfer, table_id_transfer, job_config_transfer)
+except:
+    pass
