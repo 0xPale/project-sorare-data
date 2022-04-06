@@ -93,6 +93,8 @@ df_transfer = df_transfer.rename(columns={
     "message_result_data_publicMarketWasUpdated_transfer_transfer_priceFiat_usd": "transfer_priceFiat_usd"
     })
 
+df_card = df_card.astype({'card_season_startYear':'int'})
+
 #Export csv
 df_card.to_csv(outputFolder + outputCSVSubscription + "subscriptionCard_" + extractionDate + ".csv", sep=";", index= False)
 df_transfer.to_csv(outputFolder + outputCSVSubscription + "subscriptionTransfer_" + extractionDate + ".csv", sep=";", index= False)
