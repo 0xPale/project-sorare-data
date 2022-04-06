@@ -47,6 +47,14 @@ while sliceEnd < lenPlayerList:
         # Adding 100 to the sliceStart and sliceEnd variables.
         sliceStart = sliceStart + 100
         sliceEnd = sliceEnd + 100
+    
+    elif r.status_code == 429: #Time out
+      time.sleep(60)
+      print("Status code 429 - Waited for 60s")
+  
+    elif r.status_code == 502: #Time out
+      time.sleep(60)
+      print("Status code 502 - Waited for 60s")
 
     # This is a way to handle errors. If the request is not successful, the code will raise an
     # exception.
