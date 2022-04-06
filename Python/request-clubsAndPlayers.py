@@ -2,75 +2,70 @@ from datetime import datetime
 import requests
 import json
 import time
-import shutil
+import os
 import getpass
+import pandas as pd
 #Parameters from variables
-from variables import outputFolderLocal, outputFolderCloud, outputJSON, endpoint, headers, queryCard
+from variables import outputFolderLocal, outputFolderCloud, outputClubsAndPlayers, endpoint, headers, queryClub, queryActivePlayers
 
 if getpass.getuser() == "benjamin":
     outputFolder = outputFolderLocal
 else:
     outputFolder = outputFolderCloud
 
+try:
+    os.remove(outputFolder + outputClubsAndPlayers + "playersFromClubs.csv")
+    print("Previous file removed")
+except:
+    pass
+
 #Time
 start_time = time.time()
 
-copyNumber = input ("Enter a number for currentCursor_copy number: ")
+################## Get list of clubs ready ##################
 
-shutil.copyfile(outputFolder + 'currentCursor/currentCursor.txt', outputFolder + 'currentCursor/currentCursor_copy_' + copyNumber + '.txt')
+# A request to the endpoint with the query and the headers.
+r = requests.post(endpoint, json={"query": queryClub}, headers=headers)
+if r.status_code == 200: #success
+#Transforme l'output de la commande requests en format json pour être exploité
+    raw_data = r.json()
+else:
+    raise Exception(f"Query failed to run with a {r.status_code} + {r.headers}.")
 
-#On store la dernière valeur de allCardsEndCursor pour l'utiliser en démarrage de la prochaine exécution
-with open(outputFolder + 'currentCursor/currentCursor.txt', 'r') as f:
-    currentCursor = f.read()
+# Creating a list of clubs from the dataframe.
+dic_clubs = raw_data["data"]["clubsReady"]
+df_clubs = pd.DataFrame(dic_clubs)
+clubs = df_clubs["slug"].tolist()
 
-#Looping requests
-#init
-i = 2
-hasNextPage = True
+########################################################################################################################
+################## Get list of active players from clubs ready ##################
 
-maxLoopInput = input ("Enter a number for while loop: ")
-maxLoop = int(maxLoopInput)
-
-while i <= maxLoop and hasNextPage == True:
-
-  r = requests.post(endpoint, json={"query": queryCard, "variables": {"currentCursor": str(currentCursor)}}, headers=headers)
-  if r.status_code == 200: #success
-    #Transforme l'output de la commande requests en format json pour être exploité
-      raw_data = r.json()
-
-      currentCursor = raw_data["data"]["allCards"]["allCardsPageInfo"]["allCardsEndCursor"]
-      hasNextPage = raw_data["data"]["allCards"]["allCardsPageInfo"]["allCardsHasNextPage"]
-
-      dic = raw_data["data"]["allCards"]["nodes"]
-
-      #On dump chaque json obtenu dans un fichier de 50 objets pour une réutilisation + simple + tard
-      with open(outputFolder + outputJSON + 'data_dump_' + currentCursor + '_' + datetime.now().isoformat() + '.json', 'w') as json_file:
-        json.dump(dic, json_file)
-
-      #On store la dernière valeur de allCardsEndCursor pour l'utiliser en démarrage de la prochaine exécution
-      with open(outputFolder + 'currentCursor/currentCursor.txt', 'w') as f:
-          f.write(currentCursor)
-
-      print(str(i) + " request success + hasNextPage = " + str(hasNextPage))
-      time.sleep(1.5)
-
-      i = i+1
-  
-  elif r.status_code == 429: #Time out
-
+for club in clubs:
+    r = requests.post(endpoint, json={"query": queryActivePlayers, "variables": {"clubSlug": club}}, headers=headers)
+    if r.status_code == 200: #success
+        raw_data = r.json()
+        time.sleep(3)
+    elif r.status_code == 429: #Time out
       time.sleep(60)
-      print("Status code 429 - Waited for 30s for iteration " + str(i))
-      i = i+1
-  
-  elif r.status_code == 502: #Time out
-
+      print("Status code 429 - Waited for 30s for iteration ")
+    elif r.status_code == 502: #Time out
       time.sleep(60)
-      print("Status code 502 - Waited for 30s for iteration " + str(i))
-      i = i+1
-
-  else:
+      print("Status code 502 - Waited for 30s for iteration ")
+    else:
       raise Exception(f"Query failed to run with a {r.status_code} + {r.headers}.")
 
+    # A way to check if the club has a next page of players. If it has, it will print the club name
+    # and the word "has next page: True".
+    #         If it doesn't, it will pass.
+    if raw_data["data"]["club"]["activePlayers"]["pageInfo"]["hasNextPage"] == True:
+        print(club + " has next page: True ")
+    else:
+        pass
+
+    # Creating a dataframe from the list of players and then exporting it to a csv file.
+    dic_players = raw_data["data"]["club"]["activePlayers"]["nodes"]
+    df_players = pd.DataFrame(dic_players)
+    df_players.to_csv(outputFolder + outputClubsAndPlayers + "playersFromClubs.csv", index=False, mode='a', header=not os.path.exists(outputFolder + outputClubsAndPlayers + "playersFromClubs.csv"))
+
 #Time
-print(copyNumber)
 print("--- %s seconds ---" % (time.time() - start_time))

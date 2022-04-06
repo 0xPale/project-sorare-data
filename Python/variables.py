@@ -10,6 +10,7 @@ outputJSON = "json/"
 outputJSONPlayer = "player/json/"
 outputJSONPlayerLast = "player/json_last/"
 outputJSONSubscription = "subscription/"
+outputClubsAndPlayers = "clubsAndPlayers/"
 
 # It's the path to the google app credentials file.
 googleAppCredentialsLocal = "/Users/benjamin/Documents/Projets/project-sorare-data/sorare-data-341411-23575a5fa81a.json"
@@ -373,6 +374,32 @@ query allCardsWithCursor($currentCursor: String) {
       allCardsHasPreviousPage: hasPreviousPage
       allCardsHasNextPage: hasNextPage
       allCardsEndCursor: endCursor
+    }
+  }
+}
+"""
+
+################################################################################
+queryClub = """
+query clubsReady {
+  clubsReady {
+    slug
+  }
+}
+"""
+
+################################################################################
+queryActivePlayers = """
+query allActivePlayersFromClub($clubSlug: String!) {
+  club(slug: $clubSlug) {
+    activePlayers {
+      nodes {
+        slug
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
     }
   }
 }
