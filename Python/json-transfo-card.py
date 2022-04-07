@@ -41,7 +41,6 @@ while read_files:  # True if there are any files, False python3if empty list
     # A loop that iterates over the files in the list of files to read.
     for i in range(min(len_read_files, maxRange)):   # xx files at a time 
         file = read_files[0]     # select the first file's name
-        print(file)
         # It's extracting the date from the filename.
         datetimeFromFilename = Path(file).stem.split("_")[-1] #Path().stem give the filename without extension and then we return the last element [-1] of the list created by the split                    
         with open(file, 'r') as current_file:
@@ -99,14 +98,19 @@ while read_files:  # True if there are any files, False python3if empty list
     # It drops the duplicate rows.
     df_card = df_card.drop_duplicates(subset=["card_slug", "card_name", "player_slug", "card_rarity", "card_season_startYear"])
     df_transfer = df_transfer.drop_duplicates(subset=[
-        "card_slug", "transfer_sorareAccount_manager_slug", "transfer_sorareAccount_manager_nickname", 
+        "card_slug", "sorareAccount_manager_slug", "sorareAccount_manager_nickname", 
         "transfer_date", "transfer_type", "transfer_priceETH", "transfer_priceFiat_usd"])
  
     #On met toutes les colonnes dans le bon ordre avant export
     df_card = df_card.reindex(columns=["card_slug", "card_name", "player_slug", "card_rarity", "card_season_startYear", "extracted_at"])
     df_transfer = df_transfer.reindex(columns=[
-        "card_slug", "transfer_sorareAccount_manager_slug", "transfer_sorareAccount_manager_nickname", 
+        "card_slug", "sorareAccount_manager_slug", "sorareAccount_manager_nickname", 
         "transfer_date", "transfer_type", "transfer_priceETH", "transfer_priceFiat_usd", "extracted_at"])
+    
+    df_transfer = df_transfer.rename(columns={
+    "sorareAccount_manager_slug": "manager_slug",
+    "sorareAccount_manager_nickname": "manager_nickname"
+    })
 
     df_card = df_card.astype({'card_season_startYear':'int'})
 
