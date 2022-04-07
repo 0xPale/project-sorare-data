@@ -6,8 +6,10 @@ import pickle
 import os
 import getpass
 from pathlib import Path
-from variables import outputFolderLocal, outputFolderCloud, outputCSV, outputJSON
+from variables import outputFolderLocal, outputFolderCloud, outputCardCSV, outputJSON
 
+# It's checking if the user is benjamin and if yes, then it's using the local folder, otherwise it's
+# using the cloud folder.
 if getpass.getuser() == "benjamin":
     outputFolder = outputFolderLocal
 else:
@@ -15,6 +17,10 @@ else:
 
 #Time
 start_time = time.time()
+
+# Deleting the files in the folder.
+for f in glob.glob(outputFolder + outputCardCSV + "*.csv"):
+    os.remove(f)
 
 # It's asking the user to input a number and then convert it to an integer.
 maxRangeInput = input ("Enter a number for file range: ")
@@ -90,16 +96,22 @@ while read_files:  # True if there are any files, False python3if empty list
 
     #On drop les duplicate qui peuvent apparaître dans les data liées aux players (car elles vont être dupliquées pour chaque card de ce player)
     # It drops the duplicate rows.
-    df_card = df_card.drop_duplicates(subset=["card_slug","card_name","card_rarity","card_season_startYear","player_slug"])
-    df_transfer = df_transfer.drop_duplicates(subset=["card_slug","transfer_date","transfer_type","transfer_priceETH","transfer_priceFiat_usd"])
+    df_card = df_card.drop_duplicates(subset=["card_slug", "card_name", "player_slug", "card_rarity", "card_season_startYear"])
+    df_transfer = df_transfer.drop_duplicates(subset=[
+        "card_slug", "transfer_sorareAccount_manager_slug", "transfer_sorareAccount_manager_nickname", 
+        "transfer_date", "transfer_type", "transfer_priceETH", "transfer_priceFiat_usd"])
  
     #On met toutes les colonnes dans le bon ordre avant export
-    df_card = df_card.reindex(columns=["card_slug","card_name","card_rarity","card_season_startYear","player_slug", "extracted_at"])
-    df_transfer = df_transfer.reindex(columns=["card_slug","transfer_date","transfer_type","transfer_priceETH","transfer_priceFiat_usd", "extraced_at"])
+    df_card = df_card.reindex(columns=["card_slug", "card_name", "player_slug", "card_rarity", "card_season_startYear", "extracted_at"])
+    df_transfer = df_transfer.reindex(columns=[
+        "card_slug", "transfer_sorareAccount_manager_slug", "transfer_sorareAccount_manager_nickname", 
+        "transfer_date", "transfer_type", "transfer_priceETH", "transfer_priceFiat_usd", "extracted_at"])
+
+    df_card = df_card.astype({'card_season_startYear':'int'})
 
     #Export csv
-    df_card.to_csv(outputFolder + outputCSV + "card.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "card.csv"))
-    df_transfer.to_csv(outputFolder + outputCSV + "transfer.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCSV + "transfer.csv"))
+    df_card.to_csv(outputFolder + outputCardCSV + "card.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCardCSV + "card.csv"))
+    df_transfer.to_csv(outputFolder + outputCardCSV + "transfer.csv", sep=";", index= False, mode='a', header=not os.path.exists(outputFolder + outputCardCSV + "transfer.csv"))
 
     print("--- %s seconds ---" % (time.time() - while_time))
 

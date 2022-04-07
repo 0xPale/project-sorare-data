@@ -11,6 +11,7 @@ outputJSONPlayer = "player/json/"
 outputJSONPlayerLast = "player/json_last/"
 outputJSONSubscription = "subscription/"
 outputClubsAndPlayers = "clubsAndPlayers/"
+outputCardCSV = "card/csv/"
 
 # It's the path to the google app credentials file.
 googleAppCredentialsLocal = "/Users/benjamin/Documents/Projets/project-sorare-data/sorare-data-341411-23575a5fa81a.json"
