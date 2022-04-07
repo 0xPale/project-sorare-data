@@ -41,6 +41,7 @@ while read_files:  # True if there are any files, False python3if empty list
     # A loop that iterates over the files in the list of files to read.
     for i in range(min(len_read_files, maxRange)):   # xx files at a time 
         file = read_files[0]     # select the first file's name
+        print(file)
         # It's extracting the date from the filename.
         datetimeFromFilename = Path(file).stem.split("_")[-1] #Path().stem give the filename without extension and then we return the last element [-1] of the list created by the split                    
         with open(file, 'r') as current_file:
