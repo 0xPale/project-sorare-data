@@ -23,7 +23,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= googleAppCredentials
 try:
     # Moving the files from the subscription folder to the subscription-done folder.
     for blob in list_blobs_with_prefix(bucket_name, prefix="subscription"):
-        move_blob(bucket_name, blob.name, bucket_name + "done/" + blob.name)
+        move_blob(bucket_name, blob.name, bucket_name, "done/" + blob.name)
 except:
     print("No subscription files to move.")
 
